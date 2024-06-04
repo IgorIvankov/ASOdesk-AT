@@ -1,0 +1,17 @@
+### CypressIO ###
+# gitignore template for the CypressIO, browser test framework
+# website: https://www.cypress.io/
+
+cypress/results/*
+cypress/reports/*
+cypress/screenshots/*
+cypress/videos/*
+node_modules
+mochawesome-report
+.DS_Store
+*/Service_new/Test_file.js
+
+# All log files
+*.log
+
+# End of https://www.toptal.com/developers/gitignore/api/cypressio
