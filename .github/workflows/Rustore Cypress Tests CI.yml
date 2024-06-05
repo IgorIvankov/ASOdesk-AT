@@ -4,17 +4,15 @@ on:
     branches:
      - 'main'
   schedule:
-    - cron: '0 0 * * *'     
+    - cron: '0 6 * * *'     
 
-     
-     
 jobs:
   run-tests-v1:
     runs-on: ubuntu-latest
 #    container: cypress/browsers:node18.12.0-chrome106-ff106
     
     steps:
-    - name: Checkout repository
+    - name: Checkout repository 
       uses: actions/checkout@v3
     
     - name: Install Node.js
