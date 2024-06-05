@@ -33,7 +33,7 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
       return require('./cypress/plugins/index.js')(on, config)
     },
-    // specPattern: './integration/**/*.{js,jsx,ts,tsx}',
+    specPattern: './e2e/**/*.{js,jsx,ts,tsx}',
     baseUrl: 'https://hq.asodesk.com/',
   },
 })

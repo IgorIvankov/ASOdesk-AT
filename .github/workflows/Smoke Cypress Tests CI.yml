@@ -1,10 +1,10 @@
-name: Rustore Cypress Tests CI
+name: Smoke Cypress Tests CI
 on:
   push:
     branches:
      - 'main'
   schedule:
-    - cron: '0 6 1/2 * *'     
+    - cron: '0 6 2/2 * *'     
 
 jobs:
   run-tests-v1:
@@ -24,7 +24,7 @@ jobs:
       run: npm install
       
     - name: Run Cypress tests
-      run: npm run rustore:chrome
+      run: npm run smoke:chrome
       continue-on-error: true
 
     - name: Merge test results
