@@ -3,37 +3,33 @@
   "version": "1.0.1",
   "description": "cy config",
   "main": "index.js",
-  
   "scripts": {
     "cy": "npx cypress open",
     "test": "echo \"Error: no test specified\" && exit 1",
     "runHeadless": "cypress run --headless",
     "runHeaded": "cypress run --headed --browser chrome",
-    "rustore:chrome": "cypress run  -s 'cypress/integrations/RuStore/*.js' --headless --browser chrome --reporter mochawesome",
+    "rustore:chrome": "cypress run  -s '.integrations/RuStore/*.js' --headless --browser chrome --reporter mochawesome",
     "report:merge": "mochawesome-merge ./mochawesome-report/*.json > ./index.json",
     "report:generate": "marge index.json --reportDir public --assetsDir public/assets --reportPageTitle index.html"
   },
-  
   "author": "Igor Ivankov",
   "license": "ISC",
   "devDependencies": {
+    "cypress": "^13.11.0",
     "cypress-multi-reporters": "^1.6.3",
     "mocha": "^10.2.0",
     "mochawesome": "^6.3.1",
     "mochawesome-merge": "^4.3.0",
     "mochawesome-report-generator": "^5.2.0"
   },
-  
   "repository": {
     "type": "git",
     "url": "git+https://github.com/IgorIvankov/ASOdesk-AT.git"
   },
-  
   "dependencies": {
     "ansi-regex": "^5.0.1",
     "caniuse-lite": "^1.0.30001540",
     "ci": "^1.0.0",
-    "cypress": "^13.6.0",
     "cypress-mailslurp": "^1.7.0",
     "dayjs": "^1.11.10",
     "glob-parent": "^6.0.2",
