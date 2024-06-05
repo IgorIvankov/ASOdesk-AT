@@ -19,7 +19,7 @@ module.exports = defineConfig({
   projectId: 'ASOdesk-AT',
   reporter: 'cypress-multi-reporters',
   reporterOptions: {
-    configFile: 'reported-config.js',
+    configFile: 'reported-config.json',
   },
   videoCompression: 15,
   env: {
