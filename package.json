@@ -9,7 +9,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "runHeadless": "cypress run --headless",
     "runHeaded": "cypress run --headed --browser chrome",
-    "rustore:chrome": "cypress run  -s 'cypress/integrations/*/*.js' --headless --browser chrome --reporter mochawesome",
+    "rustore:chrome": "cypress run  -s 'cypress/integrations/RuStore/*.js' --headless --browser chrome --reporter mochawesome",
     "report:merge": "mochawesome-merge ./mochawesome-report/*.json > ./index.json",
     "report:generate": "marge index.json --reportDir public --assetsDir public/assets --reportPageTitle index.html"
   },
