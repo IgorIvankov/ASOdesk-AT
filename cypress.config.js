@@ -19,7 +19,7 @@ module.exports = defineConfig({
   projectId: 'ASOdesk-AT',
   reporter: 'cypress-multi-reporters',
   reporterOptions: {
-    configFile: 'mocha.config.js',
+    configFile: 'reported-config.js',
   },
   videoCompression: 15,
   env: {
