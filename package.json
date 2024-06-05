@@ -9,7 +9,7 @@
     "runHeadless": "cypress run --headless",
     "runHeaded": "cypress run --headed --browser chrome",
     "rustore:chrome": "cypress run  -s 'cypress/e2e/RuStore/API/*.js' --headless --browser chrome --reporter mochawesome",
-    "report:merge": "mochawesome-merge cypress/results/json/*.json > index.json",
+    "report:merge": "mochawesome-merge ./mochawesome-report/*.json > ./index.json",
     "report:generate": "marge index.json --reportDir public --assetsDir public/assets --reportPageTitle index.html"
   },
   "author": "Igor Ivankov",
