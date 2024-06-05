@@ -1,4 +1,4 @@
-import {Constants} from ".//Constants";
+import {Constants} from "./Constants";
 
 export class Auth {
     constant = new Constants();
