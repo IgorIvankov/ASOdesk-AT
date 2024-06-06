@@ -1,4 +1,4 @@
-const fs = require('fs');
+
 const { IncomingWebhook } = require('@slack/webhook');
 
 async function sendReportToSlack() {
@@ -7,7 +7,7 @@ async function sendReportToSlack() {
     const webhook = new IncomingWebhook(url);
 
     // Читаем HTML-отчет из файла
-    //const report = fs.readFileSync('./mochawesome-report/mochawesome.html', 'utf8');
+    const report = fs.readFileSync('./mochawesome-report/mochawesome.html', 'utf8');
 
     await webhook.send({
       text: 'RuStore Cypress Tests Report',
@@ -18,7 +18,8 @@ async function sendReportToSlack() {
           fields: [
             {
               title: 'Report',
-              value: 'https://igorivankov.github.io/ASOdesk-AT/',
+              // value: 'https://igorivankov.github.io/ASOdesk-AT/'
+              value: report,
               short: false,
             },
           ],

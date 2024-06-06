@@ -42,6 +42,6 @@ jobs:
         user_email: 'github-actions[bot]@users.noreply.github.com'
     
     - name: Send report to Slack
-      run: node sendReportToSlack.js
+      run: node sendToSlack.js
       env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
