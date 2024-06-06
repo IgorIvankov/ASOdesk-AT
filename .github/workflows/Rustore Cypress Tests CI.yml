@@ -44,4 +44,4 @@ jobs:
     - name: Send report to Slack
       run: node sendReportToSlack.js
       env:
-          YOUR_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
