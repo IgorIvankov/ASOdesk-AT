@@ -3,7 +3,7 @@ const { IncomingWebhook } = require('@slack/webhook');
 
 async function sendReportToSlack() {
   try {
-    const url = 'https://hooks.slack.com/services/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';
+    const url = process.env.SLACK_WEBHOOK_URL;
     const webhook = new IncomingWebhook(url);
 
     // Читаем HTML-отчет из файла
