@@ -41,6 +41,9 @@ jobs:
         user_name: 'github-actions[bot]'
         user_email: 'github-actions[bot]@users.noreply.github.com'
     
-    - name: Send report to Slack
-      run: node sendToSlack.js
+    - name: Send Slack notification
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      run: |
+          curl -X POST -H 'Content-type: application/json' --data '{"text":"Hello, this is a notification from GitHub Actions!"}' $SLACK_WEBHOOK_URL
 
