@@ -45,5 +45,21 @@ jobs:
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
       run: |
-          curl -X POST -H 'Content-type: application/json' --data '{"text":"Hello, this is a notification from GitHub Actions!"}' $SLACK_WEBHOOK_URL
+          curl -X POST -H 'Content-type: application/json' --data '
+          {
+             "attachments":[
+              {
+               "fallback":"RuStore Cypress Tests Report",
+               "pretext":"RuStore Cypress Tests Report",
+               "color":"#D00300",
+               "fields":[
+                  {
+                     "title":"New Report",
+                     "value":"<https://igorivankov.github.io/ASOdesk-AT/|Click here to see results>",
+                     "short":false
+                  }
+               ]
+            }
+           ]
+          }' $SLACK_WEBHOOK_URL
 
