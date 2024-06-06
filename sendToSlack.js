@@ -1,6 +1,6 @@
 const { IncomingWebhook } = require('@slack/webhook');
 
-const url = 'https://hooks.slack.com/services/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';
+const url = 'https://hooks.slack.com/services/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';
 const webhook = new IncomingWebhook(url);
 
 webhook.send({
@@ -12,7 +12,7 @@ webhook.send({
       fields: [
         {
           title: 'Отчет',
-          value: 'Тест',
+          value: 'https://igorivankov.github.io/ASOdesk-AT/',
           short: false,
         },
       ],
