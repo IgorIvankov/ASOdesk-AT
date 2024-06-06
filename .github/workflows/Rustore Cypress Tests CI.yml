@@ -47,14 +47,14 @@ jobs:
       run: |
           curl -X POST -H 'Content-type: application/json' --data '
           {
-             "attachments":[
+            "text": "RuStore User Tests" 
+            "attachments":[
               {
-               "fallback":"RuStore Cypress Tests Report",
-               "pretext":"RuStore Cypress Tests Report",
-               "color":"#D00300",
+               "fallback":"RuStore User Tests",
+               "color":"#0b5394",
                "fields":[
                   {
-                     "title":"New Report",
+                     "title":"New report is ready",
                      "value":"<https://igorivankov.github.io/ASOdesk-AT/|Click here to see results>",
                      "short":false
                   }

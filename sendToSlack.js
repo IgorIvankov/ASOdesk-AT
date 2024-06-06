@@ -4,15 +4,15 @@ const url = 'webhook';
 const webhook = new IncomingWebhook(url);
 
 webhook.send({
-  text: 'Результаты тестов Cypress',
+  text: 'RuStore Smoke Tests',
   attachments: [
     {
-      fallback: 'HTML-отчет',
-      text: 'HTML-отчет',
+      fallback: 'RuStore Smoke Tests',
+      color: '#0b5394',
       fields: [
         {
-          title: 'Отчет',
-          value: 'https://igorivankov.github.io/ASOdesk-AT/',
+          title: 'New report is ready',
+          value: '<https://igorivankov.github.io/ASOdesk-AT/|Click here to see results>',
           short: false,
         },
       ],
