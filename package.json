@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "runHeadless": "cypress run --headless",
     "runHeaded": "cypress run --headed --browser chrome",
-    "rustore:chrome": "cypress run  -s 'cypress/e2e/RuStore/*/*.js' --headless --browser chrome",
+    "rustore:chrome": "cypress run  -s 'cypress/e2e/RuStore/API/Competitors-is-alive-RS.cy.js' --headless --browser chrome",
     "smoke:chrome": "cypress run  -s 'cypress/e2e/Smoke/**/*.js, cypress/e2e/Demo/*/*.js' --headless --browser chrome",
     "report:merge": "mochawesome-merge cypress/results/json/*.json > index.json",
     "report:generate": "marge index.json --reportDir public --assetsDir public/assets --reportPageTitle index.html"
@@ -28,6 +28,7 @@
     "url": "git+https://github.com/IgorIvankov/ASOdesk-AT.git"
   },
   "dependencies": {
+    "@slack/webhook": "^7.0.2",
     "ansi-regex": "^5.0.1",
     "caniuse-lite": "^1.0.30001540",
     "ci": "^1.0.0",

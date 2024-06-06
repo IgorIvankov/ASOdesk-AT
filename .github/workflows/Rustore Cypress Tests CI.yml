@@ -40,3 +40,8 @@ jobs:
         publish_dir: ./public
         user_name: 'github-actions[bot]'
         user_email: 'github-actions[bot]@users.noreply.github.com'
+    
+    - name: Send report to Slack
+      run: node sendReportToSlack.js
+      env:
+          YOUR_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
