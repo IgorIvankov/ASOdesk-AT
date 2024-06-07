@@ -47,7 +47,7 @@ jobs:
       run: |
           curl -X POST -H 'Content-type: application/json' --data '
           {
-            "text":"Smoke Tests" 
+            "text":"Smoke Tests", 
             "attachments":[
               {
                "fallback":"Smoke Tests",

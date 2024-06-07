@@ -47,7 +47,7 @@ jobs:
       run: |
           curl -X POST -H 'Content-type: application/json' --data '
           {
-            "text": "RuStore User Tests" 
+            "text": "RuStore User Tests", 
             "attachments":[
               {
                "fallback":"RuStore User Tests",
