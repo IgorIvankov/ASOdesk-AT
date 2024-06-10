@@ -31,7 +31,7 @@ jobs:
       run: npm run report:merge
 
     - name: Чтение данных из JSON файла
-      run: node -e "const fs = require('fs'); const jsonData = fs.readFileSync('cypress/results/json/index.json', 'utf8'); fs.writeFileSync('$GITHUB_WORKSPACE/data.json', jsonData);" 
+      run: node -e "const fs = require('fs'); const jsonData = fs.readFileSync('index.json', 'utf8'); fs.writeFileSync('$GITHUB_WORKSPACE/data.json', jsonData);" 
       
     - name: Generate HTML report
       run: npm run report:generate
