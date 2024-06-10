@@ -34,8 +34,7 @@ jobs:
       run: |
           const fs = require('fs');
           const jsonData = fs.readFileSync('cypress/results/json/index.json', 'utf8');
-          export DATA="$jsonData"
-          echo "$jsonData" >> $GITHUB_WORKSPACE/data.json  
+          echo "$jsonData" > $GITHUB_WORKSPACE/data.json  
       
     - name: Generate HTML report
       run: npm run report:generate
