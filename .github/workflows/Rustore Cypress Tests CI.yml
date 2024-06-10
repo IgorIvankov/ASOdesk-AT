@@ -41,6 +41,13 @@ jobs:
         user_name: 'github-actions[bot]'
         user_email: 'github-actions[bot]@users.noreply.github.com'
     
+    - name: Чтение данных из JSON файла
+      run: |
+          const fs = require('fs');
+          const jsonData = fs.readFileSync('cypress/results/json/index.json', 'utf8');
+          export DATA=$jsonData
+          echo $jsonData
+    
     - name: Send Slack notification
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
@@ -55,7 +62,7 @@ jobs:
                "fields":[
                   {
                      "title":"New report is ready",
-                     "value":"<https://igorivankov.github.io/ASOdesk-AT/|Click here to see results>",
+                     "value":"*Статистика тестирования:*\n- Всего тестов: '"$data.stats.tests"'\n- Прошли тестов: '"$data.stats.passes"'\n- Тесты с ошибками: '"$data.stats.failures"'\n- <https://igorivankov.github.io/ASOdesk-AT/|Click here to see results>",
                      "short":false
                   }
                ]
