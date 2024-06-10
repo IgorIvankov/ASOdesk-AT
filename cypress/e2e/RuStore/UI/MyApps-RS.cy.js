@@ -11,30 +11,37 @@ describe('My Apps page', () => {
         auth.signIn('igor_i+rustore@asodesk.com');
 
         //Search app by URL
+        cy.wait(5000);
         cy.get('div[class="appSearchSelect__control css-yk16xz-control"]').type('https://www.rustore.ru/catalog/app/ru.sberbankmobile');
-        cy.contains('Track').should('exist');
+        cy.contains('.appOption__title', 'СберБанк Онлайн') // Находим элемент, содержащий текст "СберБанк Онлайн"
+        .parents('.appSearchSelect__option') // Находим родительский элемент с классом appSearchSelect__option
+        .within(() => { // Выполняем действия внутри найденного родительского элемента
+            cy.contains('Track').should('exist'); 
+        });      
 
         //Search app by storeid
         cy.get('input[id="react-select-2-input"]').clear().type('ru.sberbankmobile-rs',{force: true});
-        cy.contains('Track').should('exist');
+        cy.contains('.appOption__title', 'СберБанк Онлайн') // Находим элемент, содержащий текст "СберБанк Онлайн"
+        .parents('.appSearchSelect__option') // Находим родительский элемент с классом appSearchSelect__option
+        .within(() => { // Выполняем действия внутри найденного родительского элемента
+            cy.contains('Track').should('exist'); 
+        });
         
         //Search app by name
-        cy.get('input[id="react-select-2-input"]').type('Сбербанк',{force: true});
+        cy.get('input[id="react-select-2-input"]').clear().type('Сбербанк',{force: true});
         cy.contains('.appOption__title', 'СберБанк Онлайн') // Находим элемент, содержащий текст "СберБанк Онлайн"
             .parents('.appSearchSelect__option') // Находим родительский элемент с классом appSearchSelect__option
             .within(() => { // Выполняем действия внутри найденного родительского элемента
                 cy.get('[data-testid="icon-rustore"]') // Находим элемент с атрибутом data-testid="icon-rustore" внутри родительского элемента
                     .should('exist'); // Проверяем, что элемент существует
-    
-                cy.contains('Track') // Находим кнопку с текстом 'Track' внутри родительского элемента
-                    .click(); // Выполняем клик на кнопку
+                cy.contains('Track').should('exist');
         });
 
 
         //Search app by URL in the wrong country
         cy.get('div[class="countriesDropdown_dropdown__rV6Yj ml-8 dropdown"]').click();
         cy.contains('Canada').click();
-        cy.get('div[class="appSearchSelect__control css-yk16xz-control"]').type('https://www.rustore.ru/catalog/app/ru.sberbankmobile');
+        cy.get('input[id="react-select-2-input"]').clear().type('https://www.rustore.ru/catalog/app/ru.sberbankmobile',{force: true});
         cy.contains('Track').should('not.be.visible');
 
         // //Search app by URL in the wrong country
@@ -42,6 +49,7 @@ describe('My Apps page', () => {
         cy.contains('Canada').click();
         cy.get('input[id="react-select-2-input"]').clear().type('ru.sberbankmobile-rs',{force: true});
         cy.contains('Track').should('not.be.visible');
+
     })
 
     it('Track rustore app', () => {
@@ -50,10 +58,15 @@ describe('My Apps page', () => {
         auth.signIn('igor_i+rustore@asodesk.com');
 
         //Track app
+        cy.wait(5000);
         cy.get('div[class="countriesDropdown_dropdown__rV6Yj ml-8 dropdown"]').click();
         cy.contains('Russia').click();
         cy.get('div[class="appSearchSelect__control css-yk16xz-control"]').type('https://www.rustore.ru/catalog/app/ru.sberbankmobile');
-        cy.get('button[class="btn btn-xs btn-primary"]').contains('Track').click();
+        cy.contains('.appOption__title', 'СберБанк Онлайн') // Находим элемент, содержащий текст "СберБанк Онлайн"
+        .parents('.appSearchSelect__option') // Находим родительский элемент с классом appSearchSelect__option
+        .within(() => { // Выполняем действия внутри найденного родительского элемента
+            cy.contains('Track').click(); 
+        });
         cy.wait(5000);
     })
 
