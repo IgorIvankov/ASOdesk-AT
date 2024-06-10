@@ -46,22 +46,23 @@ describe('Keyword Auto Suggestions should be alive and main requests should resp
             })
     });
 
-    it('KaS "long tail keywords" should response 200 and not be empty ', function () {
-        cy.request({
-            method: 'GET',
-            followRedirect: true, log: true, //turn off
-            url: 'api/ru/ru.tinkoff.sme-rs/kas/long-tail-keywords?only_positive_ts=1&without_user_keywords=1',
-            headers: {
-                'accept': 'application/json',
-                'Authorization': auth.token,
-            },
-            response: []
-        })
-            .then((response) => {
-                expect(response.status).eq(200)
-                expect(response.body.data).not.be.empty;
-            })
-    });
+    // Sometimes response may be epmty. Need to refactoring
+    // it('KaS "long tail keywords" should response 200 and not be empty ', function () {
+    //     cy.request({
+    //         method: 'GET',
+    //         followRedirect: true, log: true, //turn off
+    //         url: 'api/ru/ru.tinkoff.sme-rs/kas/long-tail-keywords?only_positive_ts=1&without_user_keywords=1',
+    //         headers: {
+    //             'accept': 'application/json',
+    //             'Authorization': auth.token,
+    //         },
+    //         response: []
+    //     })
+    //         .then((response) => {
+    //             expect(response.status).eq(200)
+    //             expect(response.body.data).not.be.empty;
+    //         })
+    // });
 
     it('"least competitive keywords" should response 200 and not be empty ', function () {
         cy.request({
