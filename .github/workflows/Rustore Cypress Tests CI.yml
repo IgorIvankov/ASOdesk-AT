@@ -60,7 +60,7 @@ jobs:
                "fields":[
                   {
                      "title":"New report is ready",
-                     "value":/n- Tests: '"$(jq -r '.stats.tests' $GITHUB_WORKSPACE/data.json)"'\n- <font color="#00ff00">Passed</font>: '"$(jq -r '.stats.passes' $GITHUB_WORKSPACE/data.json)"'\n- <font color="#ff0000">Failed</font>: '"$(jq -r '.stats.failures' $GITHUB_WORKSPACE/data.json)"'\n\n <https://igorivankov.github.io/ASOdesk-AT/|Click here to see details>",
+                     "value":/n- Tests : '"$(jq -r '.stats.tests' $GITHUB_WORKSPACE/data.json)"'\n- <font color="#00ff00">Passed</font> : '"$(jq -r '.stats.passes' $GITHUB_WORKSPACE/data.json)"'\n- <font color="#ff0000">Failed</font> : '"$(jq -r '.stats.failures' $GITHUB_WORKSPACE/data.json)"'\n\n <https://igorivankov.github.io/ASOdesk-AT/|*Click here to see results*>",
                      "short":false
                   }
                ]
