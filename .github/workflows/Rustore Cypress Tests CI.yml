@@ -52,6 +52,7 @@ jobs:
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
       run: |
+          jsonData=$(cat $GITHUB_WORKSPACE/data.json)
           curl -X POST -H 'Content-type: application/json' --data '
           {
             "text": "RuStore User Tests", 
