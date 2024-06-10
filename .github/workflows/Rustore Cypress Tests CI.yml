@@ -29,6 +29,12 @@ jobs:
 
     - name: Merge test results
       run: npm run report:merge
+
+    - name: Чтение данных из JSON файла
+      run: |
+          const fs = require('fs');
+          const jsonData = fs.readFileSync('cypress/results/json/index.json', 'utf8');
+          echo "$jsonData" >> $GITHUB_WORKSPACE/data.json  
       
     - name: Generate HTML report
       run: npm run report:generate
@@ -41,12 +47,6 @@ jobs:
         user_name: 'github-actions[bot]'
         user_email: 'github-actions[bot]@users.noreply.github.com'
     
-    - name: Чтение данных из JSON файла
-      run: |
-          const fs = require('fs');
-          const jsonData = fs.readFileSync('cypress/results/json/index.json', 'utf8');
-          export DATA=$jsonData
-          echo $jsonData
     
     - name: Send Slack notification
       env:
@@ -62,7 +62,7 @@ jobs:
                "fields":[
                   {
                      "title":"New report is ready",
-                     "value":"*Статистика тестирования:*\n- Всего тестов: '"$data.stats.tests"'\n- Прошли тестов: '"$data.stats.passes"'\n- Тесты с ошибками: '"$data.stats.failures"'\n- <https://igorivankov.github.io/ASOdesk-AT/|Click here to see results>",
+                     "value":"*Статистика тестирования:*\n- Всего тестов: '"$(jq -r '.stats.tests' $GITHUB_WORKSPACE/data.json)"'\n- Прошли тестов: '"$(jq -r '.stats.passes' $GITHUB_WORKSPACE/data.json)"'\n- Тесты с ошибками: '"$(jq -r '.stats.failures' $GITHUB_WORKSPACE/data.json)"'\n- <https://igorivankov.github.io/ASOdesk-AT/|Click here to see results>",
                      "short":false
                   }
                ]
