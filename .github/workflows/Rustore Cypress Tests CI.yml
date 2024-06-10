@@ -55,12 +55,12 @@ jobs:
             "text": "RuStore User Tests", 
             "attachments":[
               {
-               "fallback":"RuStore User Tests",
+               "fallback":"*RuStore User Tests*",
                "color":"#0b5394",
                "fields":[
                   {
                      "title":"New report is ready",
-                     "value":"*Статистика тестирования:*\n- Всего тестов: '"$(jq -r '.stats.tests' $GITHUB_WORKSPACE/data.json)"'\n- Прошли тестов: '"$(jq -r '.stats.passes' $GITHUB_WORKSPACE/data.json)"'\n- Тесты с ошибками: '"$(jq -r '.stats.failures' $GITHUB_WORKSPACE/data.json)"'\n- <https://igorivankov.github.io/ASOdesk-AT/|Click here to see results>",
+                     "value":/n- Tests: '"$(jq -r '.stats.tests' $GITHUB_WORKSPACE/data.json)"'\n- <font color="#00ff00">Passed</font>: '"$(jq -r '.stats.passes' $GITHUB_WORKSPACE/data.json)"'\n- <font color="#ff0000">Failed</font>: '"$(jq -r '.stats.failures' $GITHUB_WORKSPACE/data.json)"'\n\n <https://igorivankov.github.io/ASOdesk-AT/|Click here to see details>",
                      "short":false
                   }
                ]
