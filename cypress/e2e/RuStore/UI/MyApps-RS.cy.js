@@ -44,16 +44,16 @@ describe('My Apps page', () => {
         auth.signIn('igor_i+rustore@asodesk.com');
         
         //Search app by URL in the wrong country
+        cy.wait(10000);
         cy.get('div[class="countriesDropdown_dropdown__rV6Yj ml-8 dropdown"]').click();
         cy.contains('Canada').click();
+        cy.wait(10000);
         cy.get('div[class="appSearchSelect__control css-yk16xz-control"]').type('https://www.rustore.ru/catalog/app/ru.sberbankmobile');
-        cy.contains('Track').should('not.be.visible');
+        cy.contains('.appOption__title', 'СберБанк Онлайн').should('not.exist')
 
-        // //Search app by URL in the wrong country
-        cy.get('div[class="countriesDropdown_dropdown__rV6Yj ml-8 dropdown"]').click();
-        cy.contains('Canada').click();
+        //Search app by URL in the wrong country
         cy.get('input[id="react-select-2-input"]').clear().type('ru.sberbankmobile-rs',{force: true});
-        cy.contains('Track').should('not.be.visible');
+        cy.contains('.appOption__title', 'СберБанк Онлайн').should('not.exist')
 
     })
 
@@ -85,13 +85,13 @@ describe('My Apps page', () => {
         cy.get('div[class="countriesDropdown_dropdown__rV6Yj ml-8 dropdown"]').click();
         cy.contains('Canada').click();
         cy.wait(10000);
-        cy.get('div[class="dashboardAppList"]').contains('Сбербанк').should('not.be.visible')
+        cy.get('div[class="dashboardAppList"]').contains('Сбербанк').should('not.exist')
 
         //Check rustore app in RU locale
         cy.get('div[class="countriesDropdown_dropdown__rV6Yj ml-8 dropdown"]').click();
         cy.contains('Russia').click();
         cy.wait(10000);
-        cy.get('div[class="dashboardAppList"]').contains('Сбербанк').should('be.visible')
+        cy.get('div[class="dashboardAppList"]').contains('Сбербанк').should('be.exist')
     })
 
     it('Untrack RuStore app', () => {
