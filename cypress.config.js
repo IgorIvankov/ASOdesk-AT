@@ -34,6 +34,7 @@ module.exports = defineConfig({
       return require('./cypress/plugins/index.js')(on, config)
     },
     specPattern: './cypress/e2e/**/*.{js,jsx,ts,tsx}',
-    baseUrl: 'https://hq.asodesk.com/',
+    baseUrl: 'https://feature-used-redux-toolkit.asodesk.staging.asodesk.com/',
+    // baseUrl: 'https://hq.asodesk.com/',
   },
 })
