@@ -52,14 +52,14 @@ jobs:
           jsonData=$(cat $GITHUB_WORKSPACE/data.json)
           curl -X POST -H 'Content-type: application/json' --data '
           {
-            "text": "RuStore User Tests", 
+            "text": "New report is ready", 
             "attachments":[
               {
-               "fallback":"*RuStore User Tests*",
+               "fallback":"*New report is ready*",
                "color":"#0b5394",
                "fields":[
                   {
-                     "title":"New report is ready",
+                     "title":"*RuStore User Tests*",
                      "value":"Tests: '"$(jq -r '.stats.tests' $GITHUB_WORKSPACE/data.json)"'\n Passed: '"$(jq -r '.stats.passes' $GITHUB_WORKSPACE/data.json)"'\n Failed: '"$(jq -r '.stats.failures' $GITHUB_WORKSPACE/data.json)"'\n <https://igorivankov.github.io/ASOdesk-AT/|*Click here to see results*>",
                      "short":false
                   }
