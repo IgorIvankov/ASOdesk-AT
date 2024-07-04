@@ -11,6 +11,10 @@ const monthAgo = constant.monthAgo;
 
 describe('Search Explorer should alive and main requests should response 200', function () {
     
+    it('Obtain token', function () {
+        auth.obtain();
+    })
+    
     it('SE AS "search" should response 200 and not be empty ', function () {
         cy.request({
             method: 'GET',
