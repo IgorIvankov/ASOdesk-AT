@@ -30,7 +30,7 @@ jobs:
     - name: Merge test results
       run: npm run report:merge
 
-    - name: Чтение данных из JSON файла
+    - name: Extract data from JSON
       run: node -e "const fs = require('fs'); const jsonData = fs.readFileSync('index.json', 'utf8'); fs.writeFileSync('$GITHUB_WORKSPACE/data.json', jsonData);" 
       
     - name: Generate HTML report
@@ -44,7 +44,7 @@ jobs:
         user_name: 'github-actions[bot]'
         user_email: 'github-actions[bot]@users.noreply.github.com'
     
-    
+
     - name: Send Slack notification
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
