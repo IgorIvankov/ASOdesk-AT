@@ -1,8 +1,9 @@
 /// <reference types="cypress" />
 
 import { beforeEach } from "mocha";
-import { Auth } from "../../../Service_new/Classes_library/Auth";
-import { Commands } from "../../../Service_new/Classes_library/Commands";
+/// <reference types="cypress" />
+import {Auth} from "../../../Classes_library/Auth";
+import {Commands} from "../../../Classes_library/Commands";
 
 const auth = new Auth();
 const commands = new Commands();

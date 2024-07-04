@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
-import { Auth } from "../../Service_new/Classes_library/Auth";
-import { Constants } from "../../Service_new/Classes_library/Constants";
+import {Auth} from "../../../Classes_library/Auth";
+import {Constants} from "../../../Classes_library/Constants";
 
 const constant = new Constants();
 

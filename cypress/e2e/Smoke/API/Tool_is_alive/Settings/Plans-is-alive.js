@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-import {Auth} from "../../../Service_new/Classes_library/Auth";
+import {Auth} from "../../../../Classes_library/Auth";
 
 const auth = new Auth();
 

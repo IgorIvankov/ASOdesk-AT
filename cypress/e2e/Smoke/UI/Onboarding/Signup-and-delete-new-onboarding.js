@@ -1,8 +1,9 @@
 /// <reference types="cypress-mailslurp" />
 
 import "cypress-mailslurp";
-import { Commands } from "../Service_new/Classes_library/Commands";
-import { Auth } from "../Service_new/Classes_library/Auth";
+/// <reference types="cypress" />
+import {Auth} from "../../../Classes_library/Auth";
+import {Commands} from "../../../Classes_library/Commands";
 
 const command = new Commands();
 const auth = new Auth();

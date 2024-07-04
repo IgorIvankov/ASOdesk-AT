@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-import { Constants } from "../../Service_new/Classes_library/Constants";
+import {Constants} from "../../Classes_library/Constants";
 
 import 'dayjs';
 

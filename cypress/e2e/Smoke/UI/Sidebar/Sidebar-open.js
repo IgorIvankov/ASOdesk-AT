@@ -1,6 +1,7 @@
 /// <reference types="cypress" />
-import { Auth } from "../../../Service_new/Classes_library/Auth";
-import { Commands } from "../../../Service_new/Classes_library/Commands";
+
+import {Auth} from "../../../Classes_library/Auth";
+import {Commands} from "../../../Classes_library/Commands";
 import find from 'lodash/find';
 
 const auth = new Auth();
