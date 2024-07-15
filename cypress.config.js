@@ -34,6 +34,6 @@ module.exports = defineConfig({
       return require('./cypress/plugins/index.js')(on, config)
     },
     specPattern: './cypress/e2e/**/*.{js,jsx,ts,tsx}',
-    baseUrl: 'https://feature-fix-rustore-render.asodesk.staging.asodesk.com/',
+    baseUrl: 'https://hq.asodesk.com/',
   },
 })
