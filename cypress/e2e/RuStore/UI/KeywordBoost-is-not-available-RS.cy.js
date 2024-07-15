@@ -22,7 +22,7 @@ describe('Keyword boost is not available for RuStore apps', () => {
 
         //Click to Keyword Boost tool to check for redirecting to My Apps page
         cy.get('a[href="/keyword-boost/index/ru.tinkoff.sme-rs?locale=ru"]').contains('Keyword Boost').click();
-        cy.url().should('eq', 'https://feature-fix-rustore-render.asodesk.staging.asodesk.com/')
+        cy.url().should('eq', 'https://feature-fix-rustore-render.asodesk.staging.asodesk.com/my-apps/?locale=ru')
 
     })
 
