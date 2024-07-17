@@ -1,5 +1,6 @@
 name: Smoke Cypress Tests CI
 on:
+  workflow_dispatch:
   push:
     branches:
      - 'main'
