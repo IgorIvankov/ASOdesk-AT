@@ -62,7 +62,7 @@ jobs:
     
   send-report-to-slack:
     runs-on: ubuntu-latest
-    needs: generate-html-report
+    needs: run-cypress-tests
     steps:
     - name: Checkout repository 
       uses: actions/checkout@v3
