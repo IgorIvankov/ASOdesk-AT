@@ -3,15 +3,13 @@ on:
   workflow_dispatch:
   push:
     branches:
-     - 'main'
+      - 'main'
   schedule:
     - cron: '0 6 1/2 * *'     
 
 jobs:
   run-cypress-tests:
     runs-on: ubuntu-latest
-#    container: cypress/browsers:node18.12.0-chrome106-ff106
-    
     steps:
     - name: Checkout repository 
       uses: actions/checkout@v3
@@ -19,7 +17,7 @@ jobs:
     - name: Install Node.js
       uses: actions/setup-node@v3
       with:
-          node-version: 18
+        node-version: 18
     
     - name: Install dependencies
       run: npm install
@@ -41,7 +39,7 @@ jobs:
     - name: Install Node.js
       uses: actions/setup-node@v3
       with:
-          node-version: 18
+        node-version: 18
           
     - name: Install dependencies
       run: npm install
@@ -67,7 +65,7 @@ jobs:
     - name: Install Node.js
       uses: actions/setup-node@v3
       with:
-          node-version: 18
+        node-version: 18
     
     - name: Install dependencies
       run: npm install      
@@ -79,24 +77,24 @@ jobs:
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
       run: |
-          jsonData=$(cat $GITHUB_WORKSPACE/data.json)
-          curl -X POST -H 'Content-type: application/json' --data '
-          {
-            "text": "New report is ready", 
-            "attachments":[
-              {
-               "fallback":"*New report is ready*",
-               "color":"#0b5394",
-               "fields":[
-                  {
-                     "title":"*RuStore User Tests*",
-                     "value":"Tests: '"$(jq -r '.stats.tests' $GITHUB_WORKSPACE/data.json)"'\n Passed: '"$(jq -r '.stats.passes' $GITHUB_WORKSPACE/data.json)"'\n Failed: '"$(jq -r '.stats.failures' $GITHUB_WORKSPACE/data.json)"'\n <https://igorivankov.github.io/ASOdesk-AT/|*Click here to see results*>",
-                     "short":false
-                  }
-               ]
+        jsonData=$(cat $GITHUB_WORKSPACE/data.json)
+        curl -X POST -H 'Content-type: application/json' --data '
+        {
+          "text": "New report is ready", 
+          "attachments":[
+            {
+              "fallback":"*New report is ready*",
+              "color":"#0b5394",
+              "fields":[
+                {
+                  "title":"*RuStore User Tests*",
+                  "value":"Tests: '"$(jq -r '.stats.tests' $GITHUB_WORKSPACE/data.json)"'\n Passed: '"$(jq -r '.stats.passes' $GITHUB_WORKSPACE/data.json)"'\n Failed: '"$(jq -r '.stats.failures' $GITHUB_WORKSPACE/data.json)"'\n <https://igorivankov.github.io/ASOdesk-AT/|*Click here to see results*>",
+                  "short":false
+                }
+              ]
             }
-           ]
-          }' $SLACK_WEBHOOK_URL
+          ]
+        }' $SLACK_WEBHOOK_URL
 
   cleanup:
     runs-on: ubuntu-latest
