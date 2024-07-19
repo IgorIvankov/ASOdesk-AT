@@ -1,4 +1,5 @@
 name: Rustore Cypress Tests CI
+
 on:
   workflow_dispatch:
   push:
@@ -57,8 +58,25 @@ jobs:
         path: cypress/results/json
 
     - name: Extract data from JSON
-      run: node -e "const fs = require('fs'); const jsonData = fs.readFileSync('cypress/results/json/*.json', 'utf8'); fs.writeFileSync('$GITHUB_WORKSPACE/data.json', jsonData);"
+      run: |
+        node -e "
+          const fs = require('fs');
+          const path = require('path');
+          const directoryPath = 'cypress/results/json';
+          const outputFilePath = path.join(process.env.GITHUB_WORKSPACE || '', 'data.json');
 
+          const jsonData = [];
+          fs.readdirSync(directoryPath).forEach(file => {
+            if (path.extname(file) === '.json') {
+              const filePath = path.join(directoryPath, file);
+              const data = fs.readFileSync(filePath, 'utf8');
+              jsonData.push(data);
+            }
+          });
+
+          fs.writeFileSync(outputFilePath, jsonData.join('\\n'));
+        "
+        
     - name: Generate HTML report
       run: npm run report:generate
 
@@ -92,7 +110,24 @@ jobs:
         path: cypress/results/json
 
     - name: Extract data from JSON
-      run: node -e "const fs = require('fs'); const jsonData = fs.readFileSync('cypress/results/json/*.json', 'utf8'); fs.writeFileSync('$GITHUB_WORKSPACE/data.json', jsonData);"
+      run: |
+        node -e "
+          const fs = require('fs');
+          const path = require('path');
+          const directoryPath = 'cypress/results/json';
+          const outputFilePath = path.join(process.env.GITHUB_WORKSPACE || '', 'data.json');
+
+          const jsonData = [];
+          fs.readdirSync(directoryPath).forEach(file => {
+            if (path.extname(file) === '.json') {
+              const filePath = path.join(directoryPath, file);
+              const data = fs.readFileSync(filePath, 'utf8');
+              jsonData.push(data);
+            }
+          });
+
+          fs.writeFileSync(outputFilePath, jsonData.join('\\n'));
+        "
 
     - name: Send Slack notification
       env:
