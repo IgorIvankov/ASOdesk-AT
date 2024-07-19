@@ -1,28 +1,29 @@
 name: Rustore Cypress Tests CI
-
 on:
   workflow_dispatch:
   push:
     branches:
-      - 'main'
+     - 'main'
   schedule:
-    - cron: '0 6 1/2 * *'
+    - cron: '0 6 1/2 * *'     
 
 jobs:
-  run-cypress-tests:
+  run-tests-v1:
     runs-on: ubuntu-latest
+#    container: cypress/browsers:node18.12.0-chrome106-ff106
+    
     steps:
-    - name: Checkout repository
+    - name: Checkout repository 
       uses: actions/checkout@v3
-
+    
     - name: Install Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: 18
-
+          node-version: 18
+    
     - name: Install dependencies
       run: npm install
-
+      
     - name: Run Cypress tests
       run: npm run rustore:chrome
       continue-on-error: true
@@ -30,143 +31,41 @@ jobs:
     - name: Merge test results
       run: npm run report:merge
 
-    - name: Save test results
-      uses: actions/upload-artifact@v3
-      with:
-        name: test-results
-        path: cypress/results/json
-
-  generate-report:
-    runs-on: ubuntu-latest
-    needs: run-cypress-tests
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-
-    - name: Install Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: 18
-
-    - name: Install dependencies
-      run: npm install
-
-    - name: Download test results
-      uses: actions/download-artifact@v3
-      with:
-        name: test-results
-        path: cypress/results/json
-
     - name: Extract data from JSON
-      run: |
-        node -e "
-          const fs = require('fs');
-          const path = require('path');
-          const directoryPath = 'cypress/results/json';
-          const outputFilePath = path.join(process.env.GITHUB_WORKSPACE || '', 'data.json');
-
-          const jsonData = [];
-          fs.readdirSync(directoryPath).forEach(file => {
-            if (path.extname(file) === '.json') {
-              const filePath = path.join(directoryPath, file);
-              const data = fs.readFileSync(filePath, 'utf8');
-              jsonData.push(data);
-            }
-          });
-
-          fs.writeFileSync(outputFilePath, jsonData.join('\\n'));
-        "
-        
+      run: node -e "const fs = require('fs'); const jsonData = fs.readFileSync('index.json', 'utf8'); fs.writeFileSync('$GITHUB_WORKSPACE/data.json', jsonData);" 
+      
     - name: Generate HTML report
       run: npm run report:generate
-
+      
     - name: Deploy report page
       uses: peaceiris/actions-gh-pages@v3
       with:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}        
         publish_dir: ./public
         user_name: 'github-actions[bot]'
         user_email: 'github-actions[bot]@users.noreply.github.com'
-
-  send-report-to-slack:
-    runs-on: ubuntu-latest
-    needs: generate-report
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-
-    - name: Install Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: 18
-
-    - name: Install dependencies
-      run: npm install
-
-    - name: Download report data
-      uses: actions/download-artifact@v3
-      with:
-        name: test-results
-        path: cypress/results/json
-
-    - name: Extract data from JSON
-      run: |
-        node -e "
-          const fs = require('fs');
-          const path = require('path');
-          const directoryPath = 'cypress/results/json';
-          const outputFilePath = path.join(process.env.GITHUB_WORKSPACE || '', 'data.json');
-
-          const jsonData = [];
-          fs.readdirSync(directoryPath).forEach(file => {
-            if (path.extname(file) === '.json') {
-              const filePath = path.join(directoryPath, file);
-              const data = fs.readFileSync(filePath, 'utf8');
-              jsonData.push(data);
-            }
-          });
-
-          fs.writeFileSync(outputFilePath, jsonData.join('\\n'));
-        "
+    
 
     - name: Send Slack notification
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
       run: |
-        jsonData=$(cat $GITHUB_WORKSPACE/data.json)
-        curl -X POST -H 'Content-type: application/json' --data '
-        {
-          "text": "New report is ready", 
-          "attachments":[
-            {
-              "fallback":"*New report is ready*",
-              "color":"#0b5394",
-              "fields":[
-                {
-                  "title":"*RuStore User Tests*",
-                  "value":"Tests: '"$(jq -r '.stats.tests' $GITHUB_WORKSPACE/data.json)"'\n Passed: '"$(jq -r '.stats.passes' $GITHUB_WORKSPACE/data.json)"'\n Failed: '"$(jq -r '.stats.failures' $GITHUB_WORKSPACE/data.json)"'\n <https://igorivankov.github.io/ASOdesk-AT/|*Click here to see results*>",
-                  "short":false
-                }
-              ]
+          jsonData=$(cat $GITHUB_WORKSPACE/data.json)
+          curl -X POST -H 'Content-type: application/json' --data '
+          {
+            "text": "New report is ready", 
+            "attachments":[
+              {
+               "fallback":"*New report is ready*",
+               "color":"#0b5394",
+               "fields":[
+                  {
+                     "title":"*RuStore User Tests*",
+                     "value":"Tests: '"$(jq -r '.stats.tests' $GITHUB_WORKSPACE/data.json)"'\n Passed: '"$(jq -r '.stats.passes' $GITHUB_WORKSPACE/data.json)"'\n Failed: '"$(jq -r '.stats.failures' $GITHUB_WORKSPACE/data.json)"'\n <https://igorivankov.github.io/ASOdesk-AT/|*Click here to see results*>",
+                     "short":false
+                  }
+               ]
             }
-          ]
-        }' $SLACK_WEBHOOK_URL
+           ]
+          }' $SLACK_WEBHOOK_URL
 
-  cleanup:
-    runs-on: ubuntu-latest
-    needs:
-      - run-cypress-tests
-      - generate-report
-      - send-report-to-slack
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-
-    - name: Clean up
-      run: |
-        echo "Cleaning up workspace..."
-        rm -rf cypress/results/json/*.json
-        rm -rf index.json
-        rm -rf data.json
-        rm -rf public/*
-        echo "Cleanup done."
