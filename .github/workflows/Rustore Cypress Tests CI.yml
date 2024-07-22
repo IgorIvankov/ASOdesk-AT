@@ -34,7 +34,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: test-results
-        path: index.json
+        path: .
 
   generate-html-report:
     runs-on: ubuntu-latest
@@ -55,7 +55,7 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         name: test-results
-        path: index.json
+        path: .
       
     - name: Generate HTML report
       run: npm run report:generate
@@ -87,7 +87,7 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         name: test-results
-        path: index.json
+        path: .
 
     - name: Extract data from JSON
       run: node -e "const fs = require('fs'); const jsonData = fs.readFileSync('index.json', 'utf8'); fs.writeFileSync('$GITHUB_WORKSPACE/data.json', jsonData);" 
