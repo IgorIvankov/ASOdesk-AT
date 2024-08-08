@@ -8,6 +8,9 @@ export class Constants {
     login = 'igor_i+autotest@asodesk.com';
     loginRustore = 'igor_i+rustore@asodesk.com';
     password = '123123asodesk';
+    
+    loginlAdmin = 'igor_i@asodesk.com';
+    passwordAdmin = 'FFktrcttdb44asodesk'
 
     // Test data
     name = 'test-name' // use it every time when input should have name

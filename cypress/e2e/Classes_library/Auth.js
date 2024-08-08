@@ -34,6 +34,33 @@ export class Auth {
         //cause we need a delay to get complete data, before send request
     };
 
+    signInAdmin(Email, url) {
+        if (url != null) {
+            cy.visit(url);
+        } else {
+            cy.visit('/accounts/login/');
+        }
+
+        if (Email != null) {
+            cy.get('input[name="email"]')
+                .type(Email).should('have.value', Email)
+            cy.get('input[name="password"]')
+                .type(this.constant.passwordAdmin).should('have.value', this.constant.passwordAdmin)
+            cy.get('.buttonElement--primary').should('not.be.disabled').click()
+        } else {
+            cy.get('input[name="email"]')
+                .type(this.constant.loginlAdmin).should('have.value', this.constant.loginlAdmin)
+            cy.get('input[name="password"]')
+                .type(this.constant.passwordAdmin).should('have.value', this.constant.passwordAdmin)
+            cy.get('.buttonElement--primary').should('not.be.disabled').click()
+            cy.get('.dashboardAppCard').should('be.visible')
+        }
+
+
+        //if the content on page is visible then get the cookies
+        //cause we need a delay to get complete data, before send request
+    };
+
     hijack(Email) {
 
         if (Email != null) {
