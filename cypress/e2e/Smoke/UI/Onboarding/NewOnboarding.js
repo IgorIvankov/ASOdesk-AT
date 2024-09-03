@@ -134,6 +134,9 @@ describe("Sign up, onboarding and product tour", function () {
         cy.wait(5000)
         cy.get('button[class="buttonElement buttonElement--primary buttonElement--md rounded-4 w-full"]').click();          
 
+        //Welcome offer
+        cy.wait(5000)
+        cy.get('[data-testid="icon-cross"]').click();
     }); 
 
 
