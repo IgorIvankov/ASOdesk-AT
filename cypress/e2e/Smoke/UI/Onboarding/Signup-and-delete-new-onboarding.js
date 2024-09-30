@@ -58,10 +58,9 @@ describe("User case sign up, change password and delete account", function () {
 
     });
 
-    it('03 - skip onboarding steps', function () {
-        cy.setCookie('Authorization', auth.token);
-        cy.visit('/')
-        // auth.signIn(this.emailAddress);
+    it('Onboarding steps', function () {
+        
+        auth.signIn(this.emailAddress);
 
         //"Let's get to know you"
         cy.get('input[id="companyName"]').type('Test Company Name');
@@ -79,23 +78,108 @@ describe("User case sign up, change password and delete account", function () {
         cy.get('input[value="YouTube"]').click();
         cy.get('button[class="buttonElement buttonElement--primary buttonElement--md rounded-4 w-full"]').click();
 
-        //Skip The beginer's guide
-        cy.get('button[class="buttonElement buttonElement--secondary buttonElement--md buttonElement--no-border rounded-4 w-full"]').click();
-        
+        //The beginer's guide
+        cy.get('button[class="buttonElement buttonElement--primary buttonElement--md rounded-4 w-full mb-8"]').click();
+
+        //Select store country
+        cy.get('button[class="driver-popover-next-btn"]').click();
+
+        //Track your first app
+        cy.get('div[class="appSearchSelect__value-container css-1hwfws3"]').type('google');
+        cy.wait(10000)
+        cy.contains('Google').eq(0).click();
+
+        //Global navigation. Aso Tools
+        cy.wait(5000)
+        cy.get('span[data-testid="icon-aso-tools"]').click();
+
+        //Local Navigation and Tools
+        cy.wait(5000)
+        cy.contains('Google');
+        cy.contains('Keywords').click();
+        cy.contains('Find & Track').click();
+
+        //Posibilities of Asodesk
+        cy.wait(5000)
+        cy.contains('Track keyword positions with Keyword Ranking Chart, find and manage the best keywords for your app with Keyword Manager and Keyword Table');
+        cy.get('button[class="driver-popover-next-btn"]').click();
+
+        //Reviews & Ratings
+        cy.wait(5000)
+        cy.contains('Universal tool to work with your users');
+        cy.get('button[class="driver-popover-next-btn"]').click();
+
+        //Stores Analytics
+        cy.wait(5000)
+        cy.contains('Discover real-time search results on the App Store and Google Play');
+        cy.get('button[class="driver-popover-next-btn"]').click();       
+
+        //Connections Hub
+        cy.wait(5000)
+        cy.contains('All Reports Settings');
+        cy.get('button[class="driver-popover-next-btn"]').click();  
+
+        //Keyword Boost
+        cy.wait(5000)
+        cy.contains('Create and manage Keyword Boost campaigns to get top-1 in search results');
+        cy.get('button[class="driver-popover-next-btn"]').click();  
+
         //Schedule a demo
+        cy.wait(5000)
         cy.get('button[class="buttonElement buttonElement--secondary buttonElement--md rounded-4 w-full"]').click();        
 
         //"Find a perfect fit for you"
+        cy.wait(5000)
         cy.get('button[id="gm-get-trial-guruaso"]').click();          
 
         //Welcome on Board
         cy.wait(5000)
         cy.get('button[class="buttonElement buttonElement--primary buttonElement--md rounded-4 w-full"]').click();          
-        
+
         //Welcome offer
         cy.wait(5000)
         cy.get('[data-testid="icon-cross"]').click();
-    });
+    }); 
+    
+    //Skip Onboarding Steps
+    // it('03 - skip onboarding steps', function () {
+    //     cy.setCookie('Authorization', auth.token);
+    //     cy.visit('/')
+    //     // auth.signIn(this.emailAddress);
+
+    //     //"Let's get to know you"
+    //     cy.get('input[id="companyName"]').type('Test Company Name');
+    //     cy.get('input[value="Project Management"]').click();
+    //     cy.get('input[name="role-other"]').type('QA');
+    //     cy.get('button[class="buttonElement buttonElement--primary buttonElement--md rounded-4 w-full"]').click();
+
+    //     //"Almost done"
+    //     cy.get('input[value="2 - 5"]').click();
+    //     cy.get('input[value="50 - 99"]').click();
+    //     cy.get('input[value="6 - 20"]').click();
+    //     cy.get('button[class="buttonElement buttonElement--primary buttonElement--md rounded-4 w-full"]').click();
+
+    //     //"The last one"
+    //     cy.get('input[value="YouTube"]').click();
+    //     cy.get('button[class="buttonElement buttonElement--primary buttonElement--md rounded-4 w-full"]').click();
+
+    //     //Skip The beginer's guide
+    //     cy.get('button[class="buttonElement buttonElement--secondary buttonElement--md buttonElement--no-border rounded-4 w-full"]').click();
+        
+    //     //Schedule a demo
+    //     cy.get('button[class="buttonElement buttonElement--secondary buttonElement--md rounded-4 w-full"]').click();        
+
+    //     //"Find a perfect fit for you"
+    //     cy.get('button[id="gm-get-trial-guruaso"]').click();          
+
+    //     //Welcome on Board
+    //     cy.wait(5000)
+    //     cy.get('button[class="buttonElement buttonElement--primary buttonElement--md rounded-4 w-full"]').click();          
+        
+    //     //Welcome offer
+    //     cy.wait(5000)
+    //     cy.get('[data-testid="icon-cross"]').click();
+    // });
 
 
     it('04 - can reset password by email', function () {

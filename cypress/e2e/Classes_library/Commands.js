@@ -12,7 +12,7 @@ export class Commands {
 
     setClearRank(status) {
         cy.get('div[class="profileDropdown flex dropdown dropend"]').click();
-        cy.get('.dropdown-menu > [href="/account/"]').click({ waitForAnimations: false });
+        cy.get('a[href="/account/"]').click();
         cy.wait(500);
         status !== true ? cy.get('#id_is_clear_rank').uncheck({ force: true }).should('not.be.checked') : cy.get('#id_is_clear_rank').check({ force: true }).should('be.checked');
         cy.wait(500);
