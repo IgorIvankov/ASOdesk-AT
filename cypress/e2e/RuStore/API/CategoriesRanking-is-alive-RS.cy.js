@@ -37,7 +37,7 @@ describe('Categories Ranking should be alive and main requests should response 2
         cy.request({
             method: 'GET',
             followRedirect: true, log: true, //turn off
-            url: 'api/category-ranking/chart?category=MAIN&category_list=apps&country=ru&device_type=rustore&storeids=' + app + '&timestamp_since=' + prevDaysDate + '&timestamp_till=' + toDaysDate,
+            url: 'api/category-ranking/chart?category=MAIN&category_list=apps&country=ru&device_type=rustore&storeids=' + app + '&timestamp_since=' + toDaysDate + '&timestamp_till=' + toDaysDate,
             headers: {
                 'accept': 'application/json',
                 'Authorization': auth.token,
