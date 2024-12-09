@@ -6,8 +6,7 @@ const constant = new Constants();
 
 const auth = new Auth();
 
-const toDaysDate = constant.s_toDaysDate;
-const monthAgo = constant.s_monthAgo;
+const prevDaysDate = constant.prevDaysDate;
 
 const app = constant.applications.GP.pinterest
 
@@ -26,8 +25,8 @@ describe('Rating Analysis Board should be alive and main requests should respons
                 'Authorization': auth.token,
             },
             body: {
-                start_date: constant.monthAgo,
-                end_date: constant.toDaysDate,
+                start_date: prevDaysDate,
+                end_date: prevDaysDate,
                 countries: [constant.GpFavCountryIds[4].toUpperCase()],
             },
             response: [],

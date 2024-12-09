@@ -6,8 +6,8 @@ const constant = new Constants();
 
 const auth = new Auth();
 
-const toDaysDate = constant.s_toDaysDate;
-const monthAgo = constant.s_monthAgo;
+const prevDaysDate = constant.prevDaysDate;
+
 
 const app = constant.applications.GP.pinterest
 
@@ -27,10 +27,10 @@ describe('Reviews Analysis should be alive and main requests should response 200
             },
             body: {
                 by_changes: '1',
-                end_date: constant.toDaysDate,
+                end_date: prevDaysDate,
                 languages: [constant.GpFavCountryIds[4]],
                 search: "",
-                start_date: constant.monthAgo,
+                start_date: prevDaysDate,
                 tag_categories: [],
                 tags: [],
                 without_tags: false,
