@@ -153,3 +153,59 @@ describe('Tools should redirect to login page without Authorization', function (
     }); 
 
 });
+
+describe('Templates should redirect to login page', function () {
+
+    it('redirect to login page', function () {
+        cy.visit('/');
+        cy.contains('Reviews & Ratings').click();
+        cy.get('div[class="relative cursor-default"]:contains("Automation")').click();
+        cy.contains('Templates').click();
+        
+        //Check redirect to login page
+        cy.url().should('include', 'login');
+    });
+
+});
+
+describe('Auto-Replies should redirect to login page', function () {
+
+    it('redirect to login page', function () {
+        cy.visit('/');
+        cy.contains('Reviews & Ratings').click();
+        cy.get('div[class="relative cursor-default"]:contains("Automation")').click();
+        cy.contains('Auto-Replies').click();
+        
+        //Check redirect to login page
+        cy.url().should('include', 'login');
+    });
+
+});
+
+describe('Tags should redirect to login page', function () {
+
+    it('redirect to login page', function () {
+        cy.visit('/');
+        cy.contains('Reviews & Ratings').click();
+        cy.get('div[class="relative cursor-default"]:contains("Automation")').click();
+        cy.contains('Tags').click();
+        
+        //Check redirect to login page
+        cy.url().should('include', 'login');
+    });
+    
+});
+
+describe('Auto-Tags should redirect to login page', function () {
+
+    it('redirect to login page', function () {
+        cy.visit('/');
+        cy.contains('Reviews & Ratings').click();
+        cy.get('div[class="relative cursor-default"]:contains("Automation")').click();
+        cy.contains('Auto-Tags').click();
+        
+        //Check redirect to login page
+        cy.url().should('include', 'login');
+    });
+    
+});

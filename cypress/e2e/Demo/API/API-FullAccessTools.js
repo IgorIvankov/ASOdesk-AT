@@ -127,7 +127,7 @@ describe('Live Positions should have full access without Authorization', functio
         cy.request({
             method: 'GET',
             followRedirect: true, log: true, //turn off
-            url: '/api/keyword-explorer/keyword-suggestions?country=US&device=iphone&keyword=sport&storeid=301521403',
+            url: '/api/keyword-explorer/keyword-suggestions?country=US&device=iphone&keyword=nike&storeid=301521403',
             headers: {
                 'accept': 'application/json',
             },
@@ -191,7 +191,7 @@ describe('Search Explorer should have full access without Authorization', functi
         cy.request({
             method: 'GET',
             followRedirect: true, log: true, //turn off
-            url: '/api/keyword-explorer/search?country=ES&device=iphone&keyword=sport&length=20&start=0&remember=true',
+            url: '/api/keyword-explorer/search?country=us&device=iphone&keyword=nike&length=20&start=0&remember=true',
             headers: {
                 'accept': 'application/json',
             },
@@ -207,7 +207,7 @@ describe('Search Explorer should have full access without Authorization', functi
         cy.request({
             method: 'GET',
             followRedirect: true, log: true, //turn off
-            url: '/api/keyword-explorer/search?country=ES&device=google&keyword=sport&length=20&start=0&remember=true',
+            url: '/api/keyword-explorer/search?country=us&device=google&keyword=nike&length=20&start=0&remember=true',
             headers: {
                 'accept': 'application/json',
             },
@@ -223,7 +223,7 @@ describe('Search Explorer should have full access without Authorization', functi
         cy.request({
             method: 'GET',
             followRedirect: true, log: true, //turn off
-            url: '/api/keyword-explorer/keyword-suggestions?country=US&device=iphone&keyword=sport',
+            url: '/api/keyword-explorer/keyword-suggestions?country=us&device=iphone&keyword=nike',
             headers: {
                 'accept': 'application/json',
             },
@@ -239,7 +239,7 @@ describe('Search Explorer should have full access without Authorization', functi
         cy.request({
             method: 'GET',
             followRedirect: true, log: true, //turn off
-            url: '/api/keyword-explorer/keyword-suggestions?country=ES&device=google&keyword=sport',
+            url: '/api/keyword-explorer/keyword-suggestions?country=us&device=google&keyword=nike',
             headers: {
                 'accept': 'application/json',
             },
@@ -255,7 +255,7 @@ describe('Search Explorer should have full access without Authorization', functi
         cy.request({
             method: 'GET',
             followRedirect: true, log: true, //turn off
-            url: '/api/keyword-explorer/statistics?country=US&keyword=sport&device=iphone',
+            url: '/api/keyword-explorer/statistics?country=us&keyword=nike&device=iphone',
             headers: {
                 'accept': 'application/json',
             },
@@ -271,7 +271,7 @@ describe('Search Explorer should have full access without Authorization', functi
         cy.request({
             method: 'GET',
             followRedirect: true, log: true, //turn off
-            url: '/api/keyword-explorer/statistics?country=US&keyword=sport&device=google',
+            url: '/api/keyword-explorer/statistics?country=us&keyword=nike&device=google',
             headers: {
                 'accept': 'application/json',
             },

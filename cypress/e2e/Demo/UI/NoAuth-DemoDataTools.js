@@ -110,58 +110,58 @@ describe('Tag Analysis should have Demo banner and Demo data', function () {
     
 });
 
-describe('Templates should have Demo banner and Demo data', function () {
+// describe('Templates should have Demo banner and Demo data', function () {
 
-    it('Demo Banner should be visible', function () {
-        cy.visit('/');
-        cy.contains('Reviews & Ratings').click();
-        cy.get('div[class="relative cursor-default"]:contains("Automation")').click();
-        cy.contains('Templates').click();
+//     it('Demo Banner should be visible', function () {
+//         cy.visit('/');
+//         cy.contains('Reviews & Ratings').click();
+//         cy.get('div[class="relative cursor-default"]:contains("Automation")').click();
+//         cy.contains('Templates').click();
         
-        cy.get('div[class="rounded-8 my-16 relative bg-rb-accent-blue-default !text-rb-bg-white py-40 px-32"]').should('exist');
-        cy.contains('Experience the full power');
-    });
+//         cy.get('div[class="rounded-8 my-16 relative bg-rb-accent-blue-default !text-rb-bg-white py-40 px-32"]').should('exist');
+//         cy.contains('Experience the full power');
+//     });
 
-});
+// });
 
-describe('Auto-Replies should have Demo banner and Demo data', function () {
+// describe('Auto-Replies should have Demo banner and Demo data', function () {
 
-    it('Demo Banner should be visible', function () {
-        cy.visit('/');
-        cy.contains('Reviews & Ratings').click();
-        cy.get('div[class="relative cursor-default"]:contains("Automation")').click();
-        cy.contains('Auto-Replies').click();
+//     it('Demo Banner should be visible', function () {
+//         cy.visit('/');
+//         cy.contains('Reviews & Ratings').click();
+//         cy.get('div[class="relative cursor-default"]:contains("Automation")').click();
+//         cy.contains('Auto-Replies').click();
         
-        cy.get('div[class="rounded-8 my-16 relative bg-rb-accent-blue-default !text-rb-bg-white py-40 px-32"]').should('exist');
-        cy.contains('Experience the full power');
-    });
+//         cy.get('div[class="rounded-8 my-16 relative bg-rb-accent-blue-default !text-rb-bg-white py-40 px-32"]').should('exist');
+//         cy.contains('Experience the full power');
+//     });
 
-});
+// });
 
-describe('Tags should have Demo banner and Demo data', function () {
+// describe('Tags should have Demo banner and Demo data', function () {
 
-    it('Demo Banner should be visible', function () {
-        cy.visit('/');
-        cy.contains('Reviews & Ratings').click();
-        cy.get('div[class="relative cursor-default"]:contains("Automation")').click();
-        cy.contains('Tags').click();
+//     it('Demo Banner should be visible', function () {
+//         cy.visit('/');
+//         cy.contains('Reviews & Ratings').click();
+//         cy.get('div[class="relative cursor-default"]:contains("Automation")').click();
+//         cy.contains('Tags').click();
         
-        cy.get('div[class="rounded-8 my-16 relative bg-rb-accent-blue-default !text-rb-bg-white py-40 px-32"]').should('exist');
-        cy.contains('Experience the full power');
-    });
+//         cy.get('div[class="rounded-8 my-16 relative bg-rb-accent-blue-default !text-rb-bg-white py-40 px-32"]').should('exist');
+//         cy.contains('Experience the full power');
+//     });
     
-});
+// });
 
-describe('Auto-Tags should have Demo banner and Demo data', function () {
+// describe('Auto-Tags should have Demo banner and Demo data', function () {
 
-    it('Demo Banner should be visible', function () {
-        cy.visit('/');
-        cy.contains('Reviews & Ratings').click();
-        cy.get('div[class="relative cursor-default"]:contains("Automation")').click();
-        cy.contains('Auto-Tags').click();
+//     it('Demo Banner should be visible', function () {
+//         cy.visit('/');
+//         cy.contains('Reviews & Ratings').click();
+//         cy.get('div[class="relative cursor-default"]:contains("Automation")').click();
+//         cy.contains('Auto-Tags').click();
         
-        cy.get('div[class="rounded-8 my-16 relative bg-rb-accent-blue-default !text-rb-bg-white py-40 px-32"]').should('exist');
-        cy.contains('Experience the full power');
-    });
+//         cy.get('div[class="rounded-8 my-16 relative bg-rb-accent-blue-default !text-rb-bg-white py-40 px-32"]').should('exist');
+//         cy.contains('Experience the full power');
+//     });
     
-});
+// });
