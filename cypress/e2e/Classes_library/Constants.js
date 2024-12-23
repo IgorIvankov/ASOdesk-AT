@@ -22,6 +22,9 @@ export class Constants {
     toDaysDate_topChart = dayjs().valueOf() - 4780;
     monthAgo = dayjs().unix() - 2739405;
 
+    startPrevDayDate = dayjs().subtract(1, 'day').startOf('day').add(3, 'hour').unix(); //00:00:01 previous day
+    endPrevDayDate = dayjs().subtract(1, 'day').endOf('day').add(3, 'hour').unix(); //23:59:59 previous day
+
 
     s_monthAgo = dayjs() - 2645729858;
     s_prevDaysDate = dayjs() - 200000; //- 10000;
