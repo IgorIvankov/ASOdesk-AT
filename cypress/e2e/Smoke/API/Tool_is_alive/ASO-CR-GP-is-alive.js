@@ -1,11 +1,9 @@
 /// <reference types="cypress" />
 import {Auth} from "../../../Classes_library/Auth";
 import {Constants} from "../../../Classes_library/Constants";
-import {Commands} from "../../../Classes_library/Commands";
 
 const auth = new Auth();
 const constant = new Constants();
-const command = new Commands();
 
 const favCountryIds = constant.GpFavCountryIds;
 const favStoreIds = constant.GpFavStoreIds;
@@ -14,10 +12,8 @@ const startPrevDayDate = constant.startPrevDayDate;
 const endPrevDayDate = constant.endPrevDayDate;
 
 describe('Healthy check ASO Comparative Report Chart', () => {
-    it('Authorize with Front-End', function () {
-        auth.signIn();
-        auth.getToken();
-        // command.setClearRank(true);
+    it('Obtain token', function () {
+        auth.obtain();
     });
 
     for (let storeId of favStoreIds) {
@@ -27,12 +23,13 @@ describe('Healthy check ASO Comparative Report Chart', () => {
 
                 it('Check App in Locale: ' + country.toUpperCase(), () => {
                     cy.request({
-                        method: 'get',
-                        followRedirect: false, log: true, //turn off
+                        method: 'GET',
+                        followRedirect: true, log: true, //turn off
                         url: 'api/' + country + '/' + storeId + '/comparative-report-chart?time_since=' + startPrevDayDate + '&time_till=' + endPrevDayDate,
                         headers: {
-                            'Authorization': '' + auth.token,
-                            'sessionid': '' + auth.session //sessionid from cookies
+                            'accept': 'application/json',
+                            'Authorization': auth.token,
+                            // 'sessionid': '' + auth.session //sessionid from cookies
                         },
                         response: []
                     })
