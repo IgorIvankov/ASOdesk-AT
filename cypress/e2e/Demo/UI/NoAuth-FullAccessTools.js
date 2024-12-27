@@ -177,7 +177,7 @@ describe('Integrations should have Full Access without Authorization', function 
         //Open Connections Hub
         cy.get('a[href="/connections-hub/settings"]').click();
         //Open Integrations
-        cy.get('a[href="/connections-hub/integrations"]').click();
+        cy.get('a[href="/connections-hub/integrations?locale=us"]').click();
 
         //Demo Banner should be visible
         cy.get('div[class="rounded-8 my-16 relative bg-rb-accent-blue-default !text-rb-bg-white py-40 px-32"]').should('exist');
