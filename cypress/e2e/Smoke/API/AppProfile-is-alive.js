@@ -6,7 +6,7 @@ const constant = new Constants();
 
 const auth = new Auth();
 
-const app = constant.applications.GP.pinterest
+const app = constant.applications.GP.vk
 
 const toDaysDate = constant.s_toDaysDate;
 const monthAgo = constant.s_monthAgo;
