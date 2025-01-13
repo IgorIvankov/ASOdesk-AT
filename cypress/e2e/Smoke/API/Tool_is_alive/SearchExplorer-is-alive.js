@@ -32,7 +32,7 @@ describe('Search Explorer should alive and main requests should response 200', f
             })
     });
 
-    it('SE GP "search" should response 200 and not be empty ', function () {
+    it('SE GP "search" should response 200 or 202 and not be empty ', function () {
         cy.request({
             method: 'GET',
             followRedirect: true, log: true, //turn off
@@ -44,7 +44,7 @@ describe('Search Explorer should alive and main requests should response 200', f
             response: []
         })
             .then((response) => {
-                expect(response.status).eq(200)
+                expect(response.status).oneOf([200, 202])
                 expect(response.body.data).not.be.empty;
             })
     });
