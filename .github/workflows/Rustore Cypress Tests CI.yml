@@ -5,8 +5,8 @@ on:
   push:
     branches:
       - 'main'
-  schedule:
-    - cron: '0 6 * * 2,4'
+  # schedule:
+  #   - cron: '0 6 * * 2,4'
 
 jobs:
   run-cypress-tests:
