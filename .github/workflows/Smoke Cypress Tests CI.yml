@@ -31,7 +31,7 @@ jobs:
       run: npm run report:merge
 
     - name: Save test results
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: test-results
         path: ./index.json
@@ -52,7 +52,7 @@ jobs:
       run: npm install
 
     - name: Download test results
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: test-results
         path: ./test-results
@@ -64,7 +64,7 @@ jobs:
       run: npm run report:generate
 
     - name: Deploy report page
-      uses: peaceiris/actions-gh-pages@v3
+      uses: peaceiris/actions-gh-pages@v4
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./public
@@ -87,7 +87,7 @@ jobs:
       run: npm install
 
     - name: Download report data
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: test-results
         path: ./test-results
