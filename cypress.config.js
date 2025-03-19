@@ -24,7 +24,7 @@ module.exports = defineConfig({
   videoCompression: 15,
   env: {
     MAILSLURP_API_KEY:
-      '860a7fb57097264b1b15b568967a98d092bc6c2a6db22363c12b53a5030caee2',
+      'e67371c4c584da21aa62dabaf107f56c833f47e06af005d5788b9f02245b0821',
     RECORD_KEY: '5ef94309-37b4-4f43-81e9-d1a0d79f5add',
   },
   e2e: {

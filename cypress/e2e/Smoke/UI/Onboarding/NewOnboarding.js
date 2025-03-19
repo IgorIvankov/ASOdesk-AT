@@ -20,7 +20,7 @@ describe("Sign up, onboarding and product tour", function () {
     before(function () {
         return cy.mailslurp()
             // create new inbox
-            .then(mailslurp => mailslurp.getInbox('eae8c2d2-5c1a-40cf-ad6d-1d1b924c06aa'))
+            .then(mailslurp => mailslurp.getInbox('989bfb27-8aab-4387-99bd-700ea9ef5346'))
             .then(inbox => {
                 // save inbox id and email address to this (make sure you use function and not arrow syntax)
                 cy.wrap(inbox.id).as('inboxId')
