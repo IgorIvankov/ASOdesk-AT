@@ -30,4 +30,21 @@ describe('Competitors should be alive and main requests should response 200', fu
             })
     });
 
+    it('competitors-chart should response 200 and not be empty ', function () {
+        cy.request({
+            method: 'GET',
+            followRedirect: true, log: true, //turn off
+            url: '/api/ru/' + app + '/keyword/129021978/competitors-chart?limit=2720302s',
+            headers: {
+                'accept': 'application/json',
+                'Authorization': auth.token,
+            },
+            response: [],
+        })
+            .then((response) => {
+                expect(response.status).eq(200);
+                expect(response.body.keywords).not.be.eq(0).and.not.be.undefined;
+            })
+    });
+
 });
