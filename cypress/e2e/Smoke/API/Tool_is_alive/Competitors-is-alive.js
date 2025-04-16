@@ -25,7 +25,7 @@ describe('Competitors should be alive and main requests should response 200', fu
         })
             .then((response) => {
                 expect(response.status).eq(200);
-                expect(response.body).not.be.eq(0).and.not.be.undefined;
+                expect(response.body.keywords).not.be.eq(0).and.not.be.undefined;
             })
     });
 

@@ -27,7 +27,7 @@ describe('Top Keywords is alive', () => {
             })
                 .then((response) => {
                     expect(response.status).eq(200)
-                    expect(response.body).not.be.empty;
+                    expect(response.body.keywords).not.be.empty;
                 })
         });
 
@@ -44,7 +44,7 @@ describe('Top Keywords is alive', () => {
             })
                 .then((response) => {
                     expect(response.status).eq(200)
-                    expect(response.body).not.be.empty;
+                    expect(response.body.keywords).not.be.empty;
                 })
         });
     }   

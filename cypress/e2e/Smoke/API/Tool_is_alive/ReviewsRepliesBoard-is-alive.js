@@ -47,6 +47,8 @@ describe('Reviews & Replies Board should be alive and main requests should respo
             .then((response) => {
                 expect(response.status).eq(200);
                 expect(response.body).not.be.eq(0).and.not.be.undefined;
+                expect(response.body.results).not.be.empty;
+
             })
     });
 

@@ -26,6 +26,8 @@ describe('Featured Reviews should be alive and main requests should response 200
             .then((response) => {
                 expect(response.status).eq(200);
                 expect(response.body).not.be.eq(0).and.not.be.undefined;
+                expect(response.body[0].featured_reviews).not.be.empty;
+
             })
     });
 
