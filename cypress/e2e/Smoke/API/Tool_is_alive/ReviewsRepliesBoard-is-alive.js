@@ -20,7 +20,7 @@ describe('Reviews & Replies Board should be alive and main requests should respo
         cy.request({
             method: 'GET',
             followRedirect: true, log: true, //turn off
-            url: '/api/es/' + app + '/review-stats?start=' + monthAgo + '&end=' + toDaysDate + '&order=newest&featured=false&tag_search_type=any&countries=' + [constant.GpFavCountryIds[4].toUpperCase()] + '&without_tags=false',
+            url: '/api/es/' + app + '/review-stats?languages=en&start=' + monthAgo + '&end=' + toDaysDate + '&order=newest&featured=false&tag_search_type=any&countries=' + [constant.GpFavCountryIds[4].toUpperCase()] + '&without_tags=false',
             headers: {
                 'accept': 'application/json',
                 'Authorization': auth.token,
