@@ -12,7 +12,7 @@ describe('My Apps page', () => {
 
         //Search app by URL
         cy.wait(5000);
-        cy.get('div[class="appSearchSelect__control css-yk16xz-control"]').type('https://www.rustore.ru/catalog/app/ru.sberbankmobile');
+        cy.get('div[class="appSearchSelect__value-container css-1hwfws3"]').type('https://www.rustore.ru/catalog/app/ru.sberbankmobile');
         cy.contains('.appOption__title', 'СберБанк Онлайн') // Находим элемент, содержащий текст "СберБанк Онлайн"
         .parents('.appSearchSelect__option') // Находим родительский элемент с классом appSearchSelect__option
         .within(() => { // Выполняем действия внутри найденного родительского элемента
@@ -48,7 +48,7 @@ describe('My Apps page', () => {
         cy.get('div[class="countriesDropdown_dropdown__rV6Yj ml-8 dropdown"]').click();
         cy.contains('Canada').click();
         cy.wait(10000);
-        cy.get('div[class="appSearchSelect__control css-yk16xz-control"]').type('https://www.rustore.ru/catalog/app/ru.sberbankmobile');
+        cy.get('div[class="appSearchSelect__value-container css-1hwfws3"]').type('https://www.rustore.ru/catalog/app/ru.sberbankmobile');
         cy.contains('.appOption__title', 'СберБанк Онлайн').should('not.exist')
 
         //Search app by URL in the wrong country
@@ -66,7 +66,7 @@ describe('My Apps page', () => {
         cy.wait(5000);
         cy.get('div[class="countriesDropdown_dropdown__rV6Yj ml-8 dropdown"]').click();
         cy.contains('Russia').click();
-        cy.get('div[class="appSearchSelect__control css-yk16xz-control"]').type('https://www.rustore.ru/catalog/app/ru.sberbankmobile');
+        cy.get('div[class="appSearchSelect__value-container css-1hwfws3"]').type('https://www.rustore.ru/catalog/app/ru.sberbankmobile');
         cy.contains('.appOption__title', 'СберБанк Онлайн')
         .parents('.appSearchSelect__option')
         .within(() => {
