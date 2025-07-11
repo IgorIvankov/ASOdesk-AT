@@ -52,7 +52,7 @@ describe('My Apps page', () => {
         cy.contains('.appOption__title', 'СберБанк Онлайн').should('not.exist')
 
         //Search app by URL in the wrong country
-        cy.get('input[id="react-select-2-input"]').clear().type('ru.sberbankmobile-rs',{force: true});
+        cy.get('input[id="react-select-3-input"]').clear().type('ru.sberbankmobile-rs',{force: true});
         cy.contains('.appOption__title', 'СберБанк Онлайн').should('not.exist')
 
     })
