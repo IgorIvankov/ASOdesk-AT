@@ -19,13 +19,13 @@ describe('Search Explorer Branded Keyword is unavailable for RuStore', () => {
 
         //Check that branded keyword is shown for GP and AS
         cy.get('input[class="searchInputPanel_input__Na9eW inputElement__input inputElement__input--default inputElement__input--lg inputElement__input--block"]').type('сравни');
-        cy.get('button[class="buttonElement buttonElement--primary buttonElement--xxl buttonElement--solid buttonElement--no-border rounded-4"]').click();
+        cy.get('button[class="buttonElement rounded-4 buttonElement--primary buttonElement--xxl buttonElement--solid buttonElement--no-border"]').click();
         cy.contains('This is a branded keyword for:').should('be.visible');
  
        //Check that branded keyword is not available for RS        
         cy.get('label[data-testid="checkbox-googleplay"]').click();
         cy.get('label[data-testid="checkbox-appstore"]').click();
-        cy.get('button[class="buttonElement buttonElement--primary buttonElement--xxl buttonElement--solid buttonElement--no-border rounded-4"]').click();
+        cy.get('button[class="buttonElement rounded-4 buttonElement--primary buttonElement--xxl buttonElement--solid buttonElement--no-border"]').click();
         cy.contains('This is a branded keyword for:').should('not.exist');
     })
 

@@ -104,7 +104,7 @@ describe('All Reports Settings should have Full Access without Authorization', f
         cy.contains('Experience the full power of Asodesk for your app').should('be.visible');
         
         //Click on Create button 
-        cy.get('button[class="buttonElement buttonElement--primary buttonElement--lg buttonElement--solid rounded-4"]').click();
+        cy.get('button[class="buttonElement rounded-4 buttonElement--primary buttonElement--lg buttonElement--solid"]').click();
         cy.get('button[type="button"]:contains("Email report or alert")').click();
 
         //Check redirect to login page

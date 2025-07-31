@@ -51,8 +51,8 @@ describe('My Apps page', () => {
         cy.get('div[class="appSearchSelect__value-container css-1hwfws3"]').type('https://www.rustore.ru/catalog/app/ru.sberbankmobile');
         cy.contains('.appOption__title', 'СберБанк Онлайн').should('not.exist')
 
-        //Search app by URL in the wrong country
-        cy.get('input[id="react-select-3-input"]').clear().type('ru.sberbankmobile-rs',{force: true});
+        //Search app by Name in the wrong country
+        cy.get('input[id="react-select-2-input"]').clear().type('ru.sberbankmobile-rs',{force: true});
         cy.contains('.appOption__title', 'СберБанк Онлайн').should('not.exist')
 
     })
@@ -103,7 +103,7 @@ describe('My Apps page', () => {
         cy.contains('.dashboardAppCard', 'СберБанк Онлайн').find('.ml5.remove.cursor.dashboardAppCard__activeButton').click();
 
         //Remove button click
-        cy.get('button[class="buttonElement buttonElement--default buttonElement--lg buttonElement--solid buttonElement--block rounded-4"]').click();
+        cy.get('button[class="buttonElement rounded-4 buttonElement--default buttonElement--lg buttonElement--solid buttonElement--block"]').click();
         
         //Check that the app has been removed
         cy.contains('.dashboardAppCard', 'СберБанк Онлайн').should('not.be.exist');
