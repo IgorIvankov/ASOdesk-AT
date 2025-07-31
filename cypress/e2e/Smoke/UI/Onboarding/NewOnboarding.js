@@ -64,20 +64,20 @@ describe("Sign up, onboarding and product tour", function () {
         cy.get('input[id="companyName"]').type('Test Company Name');
         cy.get('input[value="Project Management"]').click();
         cy.get('input[name="role-other"]').type('QA');
-        cy.get('button[class="buttonElement focus:!text-white buttonElement--primary buttonElement--md rounded-4 w-full"]').click();
+        cy.get('button[class="buttonElementNew focus:!text-white buttonElementNew--primary buttonElementNew--md rounded-4 w-full"]').click();          
 
         //"Almost done"
         cy.get('input[value="2 - 5"]').click();
         cy.get('input[value="50 - 99"]').click();
         cy.get('input[value="6 - 20"]').click();
-        cy.get('button[class="buttonElement focus:!text-white buttonElement--primary buttonElement--md rounded-4 w-full"]').click();
+        cy.get('button[class="buttonElementNew focus:!text-white buttonElementNew--primary buttonElementNew--md rounded-4 w-full"]').click();          
 
         //"The last one"
         cy.get('input[value="YouTube"]').click();
-        cy.get('button[class="buttonElement focus:!text-white buttonElement--primary buttonElement--md rounded-4 w-full"]').click();
+        cy.get('button[class="buttonElementNew focus:!text-white buttonElementNew--primary buttonElementNew--md rounded-4 w-full"]').click();          
 
         //The beginer's guide
-        cy.get('button[class="buttonElement focus:!text-white buttonElement--primary buttonElement--md rounded-4 w-full mb-8"]').click();
+        cy.get('button[class="buttonElementNew focus:!text-white buttonElementNew--primary buttonElementNew--md rounded-4 w-full mb-8"]').click();
 
         //Select store country
         cy.get('button[class="driver-popover-next-btn"]').click();
@@ -124,7 +124,7 @@ describe("Sign up, onboarding and product tour", function () {
 
         //Schedule a demo
         cy.wait(5000)
-        cy.get('button[class="buttonElement focus:!text-white buttonElement--secondary buttonElement--md rounded-4 w-full"]').click();        
+        cy.get('button[class="buttonElementNew focus:!text-white buttonElementNew--secondary buttonElementNew--md rounded-4 w-full"]').click();          
 
         //"Find a perfect fit for you"
         cy.wait(5000)
@@ -132,8 +132,7 @@ describe("Sign up, onboarding and product tour", function () {
 
         //Welcome on Board
         cy.wait(5000)
-        cy.get('button[class="buttonElement focus:!text-white buttonElement--primary buttonElement--md rounded-4 w-full"]').click();          
-
+        cy.get('button[class="buttonElementNew focus:!text-white buttonElementNew--primary buttonElementNew--md rounded-4 w-full"]').click();          
         // //Welcome offer
         // cy.wait(5000)
         // cy.get('[data-testid="icon-cross"]').click();
