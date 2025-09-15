@@ -6,7 +6,7 @@ on:
     branches:
       - 'main'
   schedule:
-    - cron: '0 4 * * 2,4,6'
+    - cron: '0 4 * * 2,4'
 
 jobs:
   run-cypress-tests:

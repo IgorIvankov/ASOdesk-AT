@@ -7,6 +7,7 @@ export class Constants {
     // Credentials
     login = 'igor_i+autotest@asodesk.com';
     loginRustore = 'igor_i+rustore@asodesk.com';
+    loginReplyToReviews = 'igor_i+replytoreviews@asodesk.com'
     password = '123123asodesk';
     
     loginlAdmin = 'igor_i@asodesk.com';
