@@ -20,7 +20,7 @@ describe('My Apps page', () => {
         });      
 
         //Search app by storeid
-        cy.get('input[id="react-select-2-input"]').clear().type('ru.sberbankmobile-rs',{force: true});
+        cy.get('div[class="appSearchSelect__value-container css-1hwfws3"]').clear().type('ru.sberbankmobile-rs');
         cy.contains('.appOption__title', 'СберБанк Онлайн')
         .parents('.appSearchSelect__option')
         .within(() => {
@@ -28,7 +28,7 @@ describe('My Apps page', () => {
         });
         
         //Search app by name
-        cy.get('input[id="react-select-2-input"]').clear().type('Сбербанк',{force: true});
+        cy.get('div[class="appSearchSelect__value-container css-1hwfws3"]').clear().type('Сбербанк');
         cy.contains('.appOption__title', 'СберБанк Онлайн')
             .parents('.appSearchSelect__option')
             .within(() => {
@@ -52,7 +52,7 @@ describe('My Apps page', () => {
         cy.contains('.appOption__title', 'СберБанк Онлайн').should('not.exist')
 
         //Search app by Name in the wrong country
-        cy.get('input[id="react-select-2-input"]').clear().type('ru.sberbankmobile-rs',{force: true});
+        cy.get('div[class="appSearchSelect__value-container css-1hwfws3"]').clear().type('ru.sberbankmobile-rs');
         cy.contains('.appOption__title', 'СберБанк Онлайн').should('not.exist')
 
     })
