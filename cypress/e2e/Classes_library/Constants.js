@@ -7,7 +7,8 @@ export class Constants {
     // Credentials
     login = 'igor_i+autotest@asodesk.com';
     loginRustore = 'igor_i+rustore@asodesk.com';
-    loginReplyToReviews = 'igor_i+replytoreviews@asodesk.com'
+    loginReplyToReviews = 'igor_i+replytoreviews@asodesk.com';
+    loginSamsungGS = 'igor_i+100925@asodesk.com';
     password = '123123asodesk';
     
     loginlAdmin = 'igor_i@asodesk.com';
@@ -54,6 +55,7 @@ export class Constants {
     applications = {
         GP: {'spotify':'com.spotify.music','scanner': 'com.bpmobile.iscanner.free', 'snapchat':'com.snapchat.android', 'pinterest':'com.pinterest', 'vk':'com.vkontakte.android'},
         AS: {'spotify':'324684580','tiktok': '835599320', 'snapchat':'447188370', 'flirtme':'1336519654', 'onetwotrip': '811057180', 'pinterest':'429047995'},
-        RS: {'tinkoff':'ru.tinkoff.sme-rs'}
+        RS: {'tinkoff':'ru.tinkoff.sme-rs'},
+        SGS: {'vtb':'ru.vtb24.mobilebanking.android-ss'}
     }
 }
