@@ -109,7 +109,7 @@ describe("Sign up, onboarding and product tour", function () {
 
         //Stores Analytics
         cy.wait(5000)
-        cy.contains('Discover real-time search results on the App Store and Google Play');
+        cy.contains('Browse and compare real-time search results across different app stores');
         cy.get('button[class="driver-popover-next-btn"]').click();       
 
         //Connections Hub
