@@ -101,25 +101,39 @@ jobs:
     - name: Send Slack notification
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        GITHUB_WORKSPACE: ${{ github.workspace }}
       run: |
-          json="$GITHUB_WORKSPACE/data.json"
+        set -e
+        json="$GITHUB_WORKSPACE/data.json"
 
-          failed_list=$(jq -r '.tests[] | select(.state=="failed") | "- " + (.fullTitle // .title // "unknown")' "$json" | sed ':a;N;$!ba;s/\n/\\n/g')
+        total=$(jq -r '.stats.tests // "0"' "$json")
+        passed=$(jq -r '.stats.passes // "0"' "$json")
+        failed=$(jq -r '.stats.failures // "0"' "$json")
 
-          curl -X POST -H 'Content-type: application/json' --data '
-          {
-            "text": "New report is ready", 
-            "attachments":[
-              {
-               "fallback":"*New report is ready*",
-               "color":"#0b5394",
-               "fields":[
-                  {
-                     "title":"*HQ2 Smoke User Tests*",
-                     "value":"Tests: '"$(jq -r '.stats.tests' $json)"'\nPassed: '"$(jq -r '.stats.passes' $json)"'\nFailed: '"$(jq -r '.stats.failures' $json)"'\n\nFailed tests:\n'"$failed_list"'\n\n<https://igorivankov.github.io/ASOdesk-AT/|*Click here to see results*>",
-                     "short":false
-                  }
-               ]
+        # robust extraction for nested structure like results[].suites[].tests[]
+        failed_list=$(jq -r '(.results[] | .. | .tests? // empty)[] 
+          | select(.state == "failed") 
+          | ("- " + (.fullTitle // .title // "unknown") + (if (.err.message // .err // "") == "" then "" else " — " + (.err.message // .err // "") end))
+        ' "$json" | sed ':a;N;$!ba;s/\n/\\n/g')
+
+        if [ -z "$failed_list" ]; then
+          failed_list="(no failed tests)"
+        fi
+
+        curl -s -X POST -H 'Content-type: application/json' --data '
+        {
+          "text": "New report is ready",
+          "attachments":[
+            {
+              "fallback":"*New report is ready*",
+              "color":"#0b5394",
+              "fields":[
+                {
+                  "title":"*HQ Smoke User Tests*",
+                  "value":"Tests: '"$total"'\\nPassed: '"$passed"'\\nFailed: '"$failed"'\\n\\nFailed tests:\\n'"$failed_list"'\\n\\n<https://igorivankov.github.io/ASOdesk-AT/|*Click here to see results*>",
+                  "short":false
+                }
+              ]
             }
-           ]
-          }' $SLACK_WEBHOOK_URL
+          ]
+        }' $SLACK_WEBHOOK_URL
