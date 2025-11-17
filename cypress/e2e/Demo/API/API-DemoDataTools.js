@@ -12,7 +12,8 @@ describe('ASO CR should have Demo data', function () {
         cy.request({
             method: 'GET',
             followRedirect: false, log: true, //turn off
-            url: '/api/us/301521403/comparative-report-chart?time_since=' + monthAgo + '&time_till=' + toDaysDate,
+            //url: '/api/us/301521403/comparative-report-chart?time_since=' + monthAgo + '&time_till=' + toDaysDate,
+            url: '/123/api/us/301521403/comparative-report-chart?time_since=' + monthAgo + '&time_till=' + toDaysDate, //TEST FAILING FOR SLACK NOTIFICATION
             headers: {
                 'accept': 'application/json',
             },
