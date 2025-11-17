@@ -101,22 +101,61 @@ jobs:
     - name: Send Slack notification
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        GITHUB_WORKSPACE: ${{ github.workspace }}
       run: |
-          jsonData=$(cat $GITHUB_WORKSPACE/data.json)
-          curl -X POST -H 'Content-type: application/json' --data '
-          {
-            "text": "New report is ready", 
-            "attachments":[
-              {
-               "fallback":"*New report is ready*",
-               "color":"#0b5394",
-               "fields":[
-                  {
-                     "title":"*HQ2 Smoke User Tests*",
-                     "value":"Tests: '"$(jq -r '.stats.tests' $GITHUB_WORKSPACE/data.json)"'\n Passed: '"$(jq -r '.stats.passes' $GITHUB_WORKSPACE/data.json)"'\n Failed: '"$(jq -r '.stats.failures' $GITHUB_WORKSPACE/data.json)"'\n <https://igorivankov.github.io/ASOdesk-AT/|*Click here to see results*>",
-                     "short":false
-                  }
-               ]
+        set -e
+        json="$GITHUB_WORKSPACE/data.json"
+
+        total=$(jq -r '.stats.tests' "$json")
+        passed=$(jq -r '.stats.passes' "$json")
+        failed=$(jq -r '.stats.failures' "$json")
+
+        # extract failed tests
+        failed_raw=$(jq -r '(.results[] | .. | .tests? // empty)[] 
+          | select(.state == "failed") 
+          | "- " + (.fullTitle // .title // "unknown")
+        ' "$json")
+
+        if [ -z "$failed_raw" ]; then
+          failed_list="(no failed tests)"
+        else
+          failed_list="$failed_raw"
+        fi
+
+        # escape quotes for JSON block
+        failed_list=$(printf '%s' "$failed_list" | sed 's/"/\\"/g')
+
+        curl -s -X POST -H 'Content-type: application/json' --data '
+        {
+          "blocks": [
+            {
+              "type": "header",
+              "text": {
+                "type": "plain_text",
+                "text": "HQ2 Smoke User Tests",
+                "emoji": true
+              }
+            },
+            {
+              "type": "section",
+              "text": {
+                "type": "mrkdwn",
+                "text": "*Tests:* '"$total"'\n*Passed:* '"$passed"'\n*Failed:* '"$failed"'"
+              }
+            },
+            {
+              "type": "section",
+              "text": {
+                "type": "mrkdwn",
+                "text": "*Failed tests:*\n'"$failed_list"'"
+              }
+            },
+            {
+              "type": "section",
+              "text": {
+                "type": "mrkdwn",
+                "text": "<https://igorivankov.github.io/ASOdesk-AT/|*Click here to see results*>"
+              }
             }
-           ]
-          }' $SLACK_WEBHOOK_URL
+          ]
+        }' $SLACK_WEBHOOK_URL
