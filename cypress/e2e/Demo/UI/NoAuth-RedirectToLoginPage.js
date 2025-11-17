@@ -47,7 +47,7 @@ describe('Tools should redirect to login page without Authorization', function (
         //Open ASO Tools
         cy.contains('ASO Tools').click();
         cy.get('div[class="relative cursor-default js-local-navigation-and-tools-step-tour"]:contains("Keywords")').click();
-        cy.contains('Competitors').click();
+        cy.contains('Competitors Position').click();
 
         //Check redirect to login page
         cy.url().should('include', 'login');
