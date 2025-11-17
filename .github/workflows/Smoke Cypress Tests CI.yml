@@ -102,7 +102,10 @@ jobs:
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
       run: |
-          jsonData=$(cat $GITHUB_WORKSPACE/data.json)
+          json="$GITHUB_WORKSPACE/data.json"
+
+          failed_list=$(jq -r '.tests[] | select(.state=="failed") | "- " + (.fullTitle // .title // "unknown")' "$json" | sed ':a;N;$!ba;s/\n/\\n/g')
+
           curl -X POST -H 'Content-type: application/json' --data '
           {
             "text": "New report is ready", 
@@ -112,8 +115,8 @@ jobs:
                "color":"#0b5394",
                "fields":[
                   {
-                     "title":"*Smoke User Tests*",
-                     "value":"Tests: '"$(jq -r '.stats.tests' $GITHUB_WORKSPACE/data.json)"'\n Passed: '"$(jq -r '.stats.passes' $GITHUB_WORKSPACE/data.json)"'\n Failed: '"$(jq -r '.stats.failures' $GITHUB_WORKSPACE/data.json)"'\n <https://igorivankov.github.io/ASOdesk-AT/|*Click here to see results*>",
+                     "title":"*HQ2 Smoke User Tests*",
+                     "value":"Tests: '"$(jq -r '.stats.tests' $json)"'\nPassed: '"$(jq -r '.stats.passes' $json)"'\nFailed: '"$(jq -r '.stats.failures' $json)"'\n\nFailed tests:\n'"$failed_list"'\n\n<https://igorivankov.github.io/ASOdesk-AT/|*Click here to see results*>",
                      "short":false
                   }
                ]
