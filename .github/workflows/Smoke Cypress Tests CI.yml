@@ -125,37 +125,21 @@ jobs:
         # escape quotes for JSON block
         failed_list=$(printf '%s' "$failed_list" | sed 's/"/\\"/g')
 
-        curl -s -X POST -H 'Content-type: application/json' --data '
+        curl -X POST -H 'Content-type: application/json' --data '
         {
-          "blocks": [
+          "text": "New report is ready",
+          "attachments": [
             {
-              "type": "header",
-              "text": {
-                "type": "plain_text",
-                "text": "HQ2 Smoke User Tests",
-                "emoji": true
-              }
-            },
-            {
-              "type": "section",
-              "text": {
-                "type": "mrkdwn",
-                "text": "*Tests:* '"$total"'\n*Passed:* '"$passed"'\n*Failed:* '"$failed"'"
-              }
-            },
-            {
-              "type": "section",
-              "text": {
-                "type": "mrkdwn",
-                "text": "*Failed tests:*\n'"$failed_list"'"
-              }
-            },
-            {
-              "type": "section",
-              "text": {
-                "type": "mrkdwn",
-                "text": "<https://igorivankov.github.io/ASOdesk-AT/|*Click here to see results*>"
-              }
+              "fallback": "New report is ready",
+              "color": "#0b5394",
+              "mrkdwn_in": ["text", "fields"],
+              "fields": [
+                {
+                  "title": "*HQ2 Smoke User Tests*",
+                  "value": "*Tests:* '"$total"' \n*Passed:* '"$passed"' \n*Failed:* '"$failed"' \n\n*Failed tests:*\n'"$failed_list"',
+                  "short": false
+                }
+              ]
             }
           ]
         }' $SLACK_WEBHOOK_URL
