@@ -1,4 +1,4 @@
-name: Smoke Cypress Tests CI HQ2
+name: Smoke Cypress Tests CI hq3
 
 on:
   workflow_dispatch:
@@ -6,7 +6,7 @@ on:
     branches:
       - 'main'
   schedule:
-    - cron: '0 4 * * 2,5'
+    - cron: '0 4 * * 3'
 
 jobs:
   run-cypress-tests:
@@ -24,7 +24,7 @@ jobs:
       run: npm install
 
     - name: Run Cypress tests
-      run: CYPRESS_baseUrl="https://hq2.asodesk.com" npm run smoke:chrome
+      run: CYPRESS_baseUrl="https://hq3.asodesk.com" npm run smoke:chrome
       continue-on-error: true
 
     - name: Merge test results
@@ -132,7 +132,7 @@ jobs:
               "type": "header",
               "text": {
                 "type": "plain_text",
-                "text": "hq2 Smoke Tests",
+                "text": "hq3 Smoke Tests",
                 "emoji": true
               }
             },
