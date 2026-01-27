@@ -23,7 +23,7 @@ describe('Keyword boost is not available for RuStore apps', () => {
 
         //Click to Keyword Boost tool to check for redirecting to My Apps page
         cy.wait(3000);
-        cy.get('a[href="/keyword-boost/index/ru.tinkoff.sme-rs?locale=ru"]').contains('Keyword Boost').click();
+        cy.get('a[href="/keyword-boost/campaign/ru.tinkoff.sme-rs?locale=ru"]').contains('Keyword Boost').click();
         cy.url().should('include', '/my-apps/?locale=ru')
     })
 
