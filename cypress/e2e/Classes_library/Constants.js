@@ -56,6 +56,7 @@ export class Constants {
         GP: {'spotify':'com.spotify.music','scanner': 'com.bpmobile.iscanner.free', 'snapchat':'com.snapchat.android', 'pinterest':'com.pinterest', 'vk':'com.vkontakte.android'},
         AS: {'spotify':'324684580','tiktok': '835599320', 'snapchat':'447188370', 'flirtme':'1336519654', 'onetwotrip': '811057180', 'pinterest':'429047995'},
         RS: {'tinkoff':'ru.tinkoff.sme-rs'},
-        SGS: {'vtb':'ru.vtb24.mobilebanking.android-ss'}
+        SGS: {'vtb':'ru.vtb24.mobilebanking.android-ss'},
+        HAG: {'pochta' : 'C101143217'}
     }
 }
