@@ -138,7 +138,7 @@ describe('Tools should redirect to login page without Authorization', function (
         cy.contains('Keyword Boost').click();
 
         //Click Create Campaign button
-        cy.contains('Create Campaign').click();
+        cy.get('button[class="buttonElement rounded-4 buttonElement--primary buttonElement--lg buttonElement--solid ml-36 font-semibold"]').click();
 
         //Check redirect to login page
         cy.url().should('include', 'login');
