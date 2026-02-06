@@ -61,7 +61,7 @@ describe("Sign up, onboarding and product tour", function () {
         auth.signIn(this.emailAddress);
 
         //"Let's get to know you"
-        cy.get('input[id="companyName"]').type('Test Company Name');
+        cy.get('#companyName').type('Test Company Name');
         cy.get('input[value="Project Management"]').click();
         cy.get('input[name="role-other"]').type('QA');
         cy.get('button[class="buttonElementNew focus:!text-white buttonElementNew--primary buttonElementNew--md rounded-4 w-full"]').click();          
@@ -119,7 +119,7 @@ describe("Sign up, onboarding and product tour", function () {
 
         //Keyword Boost
         cy.wait(5000)
-        cy.contains('Create and manage Keyword Boost campaigns to get top-1 in search results');
+        cy.contains('Get app installs to reach the top');
         cy.get('button[class="driver-popover-next-btn"]').click();  
 
         //Schedule a demo
