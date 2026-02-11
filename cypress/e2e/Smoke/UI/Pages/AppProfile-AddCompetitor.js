@@ -14,6 +14,7 @@ describe('Add Competitor in App Profile page Mode is not availible without permi
         cy.get('a[href="/aso-tools/app-profile/com.ubercab.driver?locale=us"]').contains('Uber').click();
 
         //Add competitor
+        cy.wait(5000);
         cy.get('button[class="buttonElementNew focus:!text-white buttonElementNew--primary buttonElementNew--md rounded-4 !rounded-l-0"]').contains('Competitors').click();
         cy.get('button[class="buttonElementNew focus:!text-white buttonElementNew--primary buttonElementNew--xs rounded-4"]').first('').click();
         cy.get('span[data-testid="icon-cross"]').click();
