@@ -1,4 +1,4 @@
-name: Smoke Cypress Tests CI HQ2
+name: Smoke Cypress Tests CI hq2
 
 on:
   workflow_dispatch:
@@ -112,15 +112,10 @@ jobs:
 
         # extract failed tests
         failed_raw=$(jq -r '
-        [ (.results[] | .. | .tests? // empty)[]
-          | select(.state == "failed")
-          | .fullTitle
-          | sub(" [^ ]+$"; "")
-        ] 
-        | unique
-        | .[]
-        | "- " + .
-        ' "$json")
+          (.results[] | .. | objects | select(has("tests") and has("title")))
+          | select([.tests[]?.state] | any(. == "failed"))
+          | .title
+          ' "$json" | sort -u | sed 's/^/- /')
 
         if [ -z "$failed_raw" ]; then
           failed_list="(no failed tests)"
