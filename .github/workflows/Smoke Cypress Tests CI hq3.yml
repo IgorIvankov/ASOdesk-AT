@@ -111,9 +111,15 @@ jobs:
         failed=$(jq -r '.stats.failures' "$json")
 
         # extract failed tests
-        failed_raw=$(jq -r '(.results[] | .. | .tests? // empty)[] 
-          | select(.state == "failed") 
-          | "- " + (.fullTitle // .title // "unknown")
+        failed_raw=$(jq -r '
+        [ (.results[] | .. | .tests? // empty)[]
+          | select(.state == "failed")
+          | .fullTitle
+          | sub(" [^ ]+$"; "")
+        ] 
+        | unique
+        | .[]
+        | "- " + .
         ' "$json")
 
         if [ -z "$failed_raw" ]; then
