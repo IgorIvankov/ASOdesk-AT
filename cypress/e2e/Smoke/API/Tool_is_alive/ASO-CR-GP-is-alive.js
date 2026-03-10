@@ -17,7 +17,7 @@ describe('Healthy check ASO Comparative Report Chart', () => {
     });
 
     for (let storeId of favStoreIds) {
-        context('Check App by Store id: ' + storeId, () => {
+        context('ASO CR GP. Check App by Store id: ' + storeId, () => {
 
             for (let country of favCountryIds) {
 
