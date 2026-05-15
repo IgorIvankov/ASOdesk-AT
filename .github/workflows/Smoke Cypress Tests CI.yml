@@ -6,22 +6,26 @@ on:
     branches:
       - 'main'
   schedule:
-    - cron: '0 4 * * 1,4'
+    - cron: '0 2 * * 1,4'
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   run-cypress-tests:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Install Node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
-        node-version: 18
+        node-version: 22
+        cache: npm
 
     - name: Install dependencies
-      run: npm install
+      run: npm ci
 
     - name: Run Cypress tests
       run: npm run smoke:chrome
@@ -41,15 +45,16 @@ jobs:
     needs: run-cypress-tests
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Install Node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
-        node-version: 18
+        node-version: 22
+        cache: npm
 
     - name: Install dependencies
-      run: npm install
+      run: npm ci
 
     - name: Download test results
       uses: actions/download-artifact@v4
@@ -76,15 +81,16 @@ jobs:
     needs: generate-html-report
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Install Node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
-        node-version: 18
+        node-version: 22
+        cache: npm
 
     - name: Install dependencies
-      run: npm install
+      run: npm ci
 
     - name: Download report data
       uses: actions/download-artifact@v4
