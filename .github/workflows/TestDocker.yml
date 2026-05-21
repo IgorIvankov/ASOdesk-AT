@@ -19,15 +19,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Build Docker image
-        run: docker build -t adat-test .
-
-      - name: Run Cypress tests in Docker
-        run: |
-          docker run --rm \
-            -v ${{ github.workspace }}:/app \
-            adat-test || true
-
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
@@ -36,6 +27,23 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Build Docker image
+        run: docker build -t asodesk-smoke .
+
+      - name: Run Cypress tests in Docker
+        run: |
+          docker run --rm \
+            -v ${{ github.workspace }}:/app \
+            -w /app \
+            asodesk-smoke \
+            npm run smoke:chrome || true
+
+      - name: Debug report files
+        run: |
+          ls -R cypress || true
+          ls -R cypress/results || true
+          ls -R cypress/results/json || true
 
       - name: Merge test results
         run: npm run report:merge
