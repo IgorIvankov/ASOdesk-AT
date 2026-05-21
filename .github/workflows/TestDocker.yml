@@ -29,15 +29,15 @@ jobs:
         run: npm ci
 
       - name: Build Docker image
-        run: docker build -t asodesk-smoke .
+        run: docker build -t adat-test .
 
       - name: Run Cypress tests in Docker
         run: |
           docker run --rm \
             -v ${{ github.workspace }}:/app \
             -w /app \
-            asodesk-smoke \
-            npm run smoke:chrome || true
+            adat-test \
+            npm run onetest:chrome || true
 
       - name: Debug report files
         run: |
