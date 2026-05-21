@@ -11,7 +11,8 @@
     "rustore:chrome": "cypress run  --spec cypress/e2e/RuStore/*/*.js --headless --browser chrome",
     "smoke:chrome": "cypress run  --spec cypress/e2e/Smoke/**/*.js,cypress/e2e/Demo/*/*.js,cypress/e2e/RuStore/*/*.js,cypress/e2e/SamsungGS/*/*.js --headless --browser chrome",
     "report:merge": "mochawesome-merge cypress/results/json/*.json > index.json",
-    "report:generate": "marge index.json --reportDir public --assetsDir public/assets --reportPageTitle index.html"
+    "report:generate": "marge index.json --reportDir public --assetsDir public/assets --reportPageTitle index.html",
+    "onetest:chrome": "cypress run  --spec cypress/e2e/Smoke/API/Tool_is_alive/Localizations-is-alive.js --headless --browser chrome"
   },
   "author": "Igor Ivankov",
   "license": "ISC",
