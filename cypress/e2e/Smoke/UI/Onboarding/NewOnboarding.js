@@ -128,7 +128,7 @@ describe("Sign up, onboarding and product tour", function () {
 
         //"Find a perfect fit for you"
         cy.wait(5000)
-        cy.get('button[id="gm-get-trial-guruaso"]').click();          
+        cy.get('button[id="gm-get-trial-basicguru aso"]').click();          
 
         //Welcome on Board
         cy.wait(5000)
