@@ -76,7 +76,6 @@ export class Auth {
         cy.get('a').contains('Sign Up').click();
         cy.get("[name=first_name]").type(this.constant.name)
         cy.get("[name=email]").type(Email).trigger('change');
-        // use the email address from mailslurp
         // cy.get("[name=company]").type('test company');
 		cy.contains('div', 'country', {matchCase:false}).type('Russia{Enter}');
         // cy.contains('div', 'Job title', {matchCase: false}).click();
