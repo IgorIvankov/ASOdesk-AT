@@ -43,7 +43,7 @@ export class Constants {
     // Google Play
     GpDeviceType = 'googleplay';
     GpFavCountryIds = ["ru", "us", "gb", "de", "es", "it", "fr", "ca", "au", "br"];
-    GpFavStoreIds = ["com.pinterest", "sinet.startup.inDriver", "com.snapchat.android", "com.vkontakte.android"]; //pinterest, inDriver, snapchat, vk
+    GpFavStoreIds = ["com.pinterest", "sinet.startup.inDriver", "com.snapchat.android", "com.bpmobile.iscanner.free"]; //pinterest, inDriver, snapchat, iscanner
     // GpFavStoreIds = ["com.pinterest", "com.google.android.googlequicksearchbox", "com.booking", "sinet.startup.inDriver", "com.snapchat.android"]; //pinterest, pdf scanner, tiktok, snapchat
     GpAllCategoryIds = ["ANDROID_WEAR", "ART_AND_DESIGN", "AUTO_AND_VEHICLES", "BEAUTY", "BOOKS_AND_REFERENCE", "BUSINESS", "CATEGORY_ALL", "COMICS", "COMMUNICATION", "DATING", "EDUCATION", "ENTERTAINMENT", "EVENTS", "HEALTH_AND_FITNESS", "HOUSE_AND_HOME", "LIBRARIES_AND_DEMO", "LIFESTYLE", "MAPS_AND_NAVIGATION", "MEDICAL", "MUSIC_AND_AUDIO", "NEWS_AND_MAGAZINES", "PARENTING", "PERSONALIZATION", "PHOTOGRAPHY", "PRODUCTIVITY", "SHOPPING", "SOCIAL", "SPORTS", "TOOLS", "TRAVEL_AND_LOCAL", "VIDEO_PLAYERS", "WEATHER"];
     // exclude "FAMILY", "FAMILY_ACTION", "FAMILY_BRAINGAMES", "FAMILY_CREATE", "FAMILY_EDUCATION", "FAMILY_MUSICVIDEO", "FAMILY_PRETEND", "FINANCE", "FOOD_AND_DRINK", "GAME", "GAME_ACTION", "GAME_ADVENTURE", "GAME_ARCADE", "GAME_BOARD", "GAME_CARD", "GAME_CASINO", "GAME_CASUAL", "GAME_EDUCATIONAL", "GAME_MUSIC", "GAME_PUZZLE", "GAME_RACING", "GAME_ROLE_PLAYING", "GAME_SIMULATION", "GAME_SPORTS", "GAME_STRATEGY", "GAME_TRIVIA", "GAME_WORD",
