@@ -8,7 +8,7 @@ describe('Export and icons&screenshots are disabled without features', () => {
     it('Export and icons&screenshots are disabled without features', () => {
        
         //Sign in
-        auth.signIn('igor_i+replytoreviews@asodesk.com');
+        auth.signIn('igor_i+0707@asodesk.com');
 
         //Go to App Profile
         cy.get('a[href="/aso-tools/app-profile/284815942?locale=ru"]').click();
