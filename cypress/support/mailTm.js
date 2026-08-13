@@ -1,88 +1,82 @@
 const BASE_URL = 'https://api.mail.tm';
 
-export async function createMailTmInbox() {
-  const domainsResponse = await fetch(`${BASE_URL}/domains`);
-  const domainsData = await domainsResponse.json();
+Cypress.Commands.add('createEmailInbox', () => {
+  return cy.request({
+    method: 'GET',
+    url: `${BASE_URL}/domains`
+  }).then(domainsResponse => {
+    const domain = domainsResponse.body['hydra:member'][0].domain;
 
-  const domain = domainsData['hydra:member'][0].domain;
+    const email = `test-${Date.now()}-${Math.random().toString(36).slice(2)}@${domain}`;
+    const password = `Password-${Date.now()}!`;
 
-  const email = `test-${Date.now()}-${Math.random().toString(36).slice(2)}@${domain}`;
-  const password = `Password-${Date.now()}!`;
+    return cy.request({
+      method: 'POST',
+      url: `${BASE_URL}/accounts`,
+      body: {
+        address: email,
+        password
+      }
+    }).then(accountResponse => {
+      expect(accountResponse.status).to.eq(201);
 
-  const accountResponse = await fetch(`${BASE_URL}/accounts`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      address: email,
-      password
-    })
+      return cy.request({
+        method: 'POST',
+        url: `${BASE_URL}/token`,
+        body: {
+          address: email,
+          password
+        }
+      }).then(tokenResponse => {
+        expect(tokenResponse.status).to.eq(200);
+
+        return {
+          email,
+          password,
+          token: tokenResponse.body.token
+        };
+      });
+    });
   });
+});
 
-  if (!accountResponse.ok) {
-    throw new Error(`Failed to create mail.tm account: ${accountResponse.status}`);
-  }
 
-  const tokenResponse = await fetch(`${BASE_URL}/token`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      address: email,
-      password
-    })
-  });
-
-  if (!tokenResponse.ok) {
-    throw new Error(`Failed to get mail.tm token: ${tokenResponse.status}`);
-  }
-
-  const tokenData = await tokenResponse.json();
-
-  return {
-    email,
-    password,
-    token: tokenData.token
-  };
-}
-
-export async function waitForLatestEmail(token, timeoutMs = 60000) {
+Cypress.Commands.add('waitForLatestEmail', (token, timeoutMs = 60000) => {
   const startedAt = Date.now();
 
-  while (Date.now() - startedAt < timeoutMs) {
-    const response = await fetch(`${BASE_URL}/messages`, {
+  function checkEmail() {
+    if (Date.now() - startedAt >= timeoutMs) {
+      throw new Error('Email was not received in time');
+    }
+
+    return cy.request({
+      method: 'GET',
+      url: `${BASE_URL}/messages`,
       headers: {
         Authorization: `Bearer ${token}`
       }
-    });
+    }).then(response => {
+      const messages = response.body['hydra:member'];
 
-    if (!response.ok) {
-      throw new Error(`Failed to fetch mail.tm messages: ${response.status}`);
-    }
+      if (messages.length > 0) {
+        const latestMessage = messages[0];
 
-    const data = await response.json();
-    const messages = data['hydra:member'];
-
-    if (messages.length > 0) {
-      const latestMessage = messages[0];
-
-      const messageResponse = await fetch(`${BASE_URL}/messages/${latestMessage.id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
-
-      if (!messageResponse.ok) {
-        throw new Error(`Failed to read mail.tm message: ${messageResponse.status}`);
+        return cy.request({
+          method: 'GET',
+          url: `${BASE_URL}/messages/${latestMessage.id}`,
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }).then(messageResponse => {
+          return messageResponse.body;
+        });
       }
 
-      return messageResponse.json();
-    }
-
-    await new Promise(resolve => setTimeout(resolve, 3000));
+      return cy.wait(3000).then(() => {
+        return checkEmail();
+      });
+    });
   }
 
-  throw new Error('Email was not received in time');
-}
+  return checkEmail();
+});

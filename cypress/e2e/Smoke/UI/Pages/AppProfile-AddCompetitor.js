@@ -20,11 +20,16 @@ describe('Add Competitor in App Profile page Mode is not availible without permi
         cy.get('span[data-testid="icon-cross"]').click();
         
         //Go to Competitors Positions
+        cy.wait(5000);
         cy.get('div[class="relative cursor-default js-local-navigation-and-tools-step-tour"]').contains('Keywords').trigger('mouseover');
         cy.contains('Competitors Position').click();
 
         //Check and delete competitor
-        cy.get('a[class="btn btn-xs btn-danger dropdown-toggle ng-scope"]').click();
+        cy.get('a[class="btn btn-xs btn-danger dropdown-toggle ng-scope"]').first().click();
+        
+
+
+        
     })
 
 })    
