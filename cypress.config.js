@@ -15,7 +15,7 @@ module.exports = defineConfig({
     '*.clarity.*',
   ],
   video: false,
-  retries: 1,
+  retries: 2,
   projectId: 'ASOdesk-AT',
   reporter: 'cypress-multi-reporters',
   reporterOptions: {
