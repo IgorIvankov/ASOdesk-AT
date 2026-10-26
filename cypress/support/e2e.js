@@ -20,14 +20,14 @@ import './commands'
 // require('./commands')
 
 
-// Cypress.on('uncaught:exception', (err) => {
-//   const isChunkError =
-//     err.name === 'ChunkLoadError' ||
-//     /Loading chunk [\d]+ failed/i.test(err.message) ||
-//     /Loading CSS chunk [\d]+ failed/i.test(err.message);
+Cypress.on('uncaught:exception', (err) => {
+  const isChunkError =
+    err.name === 'ChunkLoadError' ||
+    /Loading chunk [\d]+ failed/i.test(err.message) ||
+    /Loading CSS chunk [\d]+ failed/i.test(err.message);
 
-//   if (isChunkError) {
-//     console.warn('Ignored ChunkLoadError:', err.message);
-//     return false; 
-//   }
-// });
+  if (isChunkError) {
+    console.warn('Ignored ChunkLoadError:', err.message);
+    return false; 
+  }
+});
